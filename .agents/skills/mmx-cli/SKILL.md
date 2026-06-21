@@ -31,14 +31,14 @@ Region is auto-detected. Override with `--region global` or `--region cn`.
 
 Always use these flags in non-interactive (agent/CI) contexts:
 
-| Flag | Purpose |
-|---|---|
-| `--non-interactive` | Fail fast on missing args instead of prompting |
-| `--quiet` | Suppress spinners/progress; stdout is pure data |
-| `--output json` | Machine-readable JSON output |
-| `--async` | Return task ID immediately (video generation) |
-| `--dry-run` | Preview the API request without executing |
-| `--yes` | Skip confirmation prompts |
+| Flag                | Purpose                                         |
+| ------------------- | ----------------------------------------------- |
+| `--non-interactive` | Fail fast on missing args instead of prompting  |
+| `--quiet`           | Suppress spinners/progress; stdout is pure data |
+| `--output json`     | Machine-readable JSON output                    |
+| `--async`           | Return task ID immediately (video generation)   |
+| `--dry-run`         | Preview the API request without executing       |
+| `--yes`             | Skip confirmation prompts                       |
 
 ---
 
@@ -52,17 +52,17 @@ Chat completion. Default model: `MiniMax-M2.7`.
 mmx text chat --message <text> [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--message <text>` | string, **required**, repeatable | Message text. Prefix with `role:` to set role (e.g. `"system:You are helpful"`, `"user:Hello"`) |
-| `--messages-file <path>` | string | JSON file with messages array. Use `-` for stdin |
-| `--system <text>` | string | System prompt |
-| `--model <model>` | string | Model ID (default: `MiniMax-M2.7`) |
-| `--max-tokens <n>` | number | Max tokens (default: 4096) |
-| `--temperature <n>` | number | Sampling temperature (0.0, 1.0] |
-| `--top-p <n>` | number | Nucleus sampling threshold |
-| `--stream` | boolean | Stream tokens (default: on in TTY) |
-| `--tool <json-or-path>` | string, repeatable | Tool definition JSON or file path |
+| Flag                     | Type                             | Description                                                                                     |
+| ------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `--message <text>`       | string, **required**, repeatable | Message text. Prefix with `role:` to set role (e.g. `"system:You are helpful"`, `"user:Hello"`) |
+| `--messages-file <path>` | string                           | JSON file with messages array. Use `-` for stdin                                                |
+| `--system <text>`        | string                           | System prompt                                                                                   |
+| `--model <model>`        | string                           | Model ID (default: `MiniMax-M2.7`)                                                              |
+| `--max-tokens <n>`       | number                           | Max tokens (default: 4096)                                                                      |
+| `--temperature <n>`      | number                           | Sampling temperature (0.0, 1.0]                                                                 |
+| `--top-p <n>`            | number                           | Nucleus sampling threshold                                                                      |
+| `--stream`               | boolean                          | Stream tokens (default: on in TTY)                                                              |
+| `--tool <json-or-path>`  | string, repeatable               | Tool definition JSON or file path                                                               |
 
 ```bash
 # Single message
@@ -90,20 +90,20 @@ Generate images. Model: `image-01`.
 mmx image generate --prompt <text> [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--prompt <text>` | string, **required** | Image description |
-| `--aspect-ratio <ratio>` | string | e.g. `16:9`, `1:1`. Ignored if `--width` and `--height` are both set |
-| `--n <count>` | number | Number of images (default: 1) |
-| `--seed <n>` | number | Random seed for reproducible generation |
-| `--width <px>` | number | Width in pixels (512–2048, multiple of 8). Requires `--height` |
-| `--height <px>` | number | Height in pixels (512–2048, multiple of 8). Requires `--width` |
-| `--prompt-optimizer` | boolean | Optimize prompt before generation |
-| `--aigc-watermark` | boolean | Embed AI-generated content watermark |
-| `--subject-ref <params>` | string | Subject reference: `type=character,image=path-or-url` |
-| `--response-format <format>` | string | `url` (default) or `base64`. Base64 bypasses CDN download |
-| `--out-dir <dir>` | string | Download images to directory |
-| `--out-prefix <prefix>` | string | Filename prefix (default: `image`) |
+| Flag                         | Type                 | Description                                                          |
+| ---------------------------- | -------------------- | -------------------------------------------------------------------- |
+| `--prompt <text>`            | string, **required** | Image description                                                    |
+| `--aspect-ratio <ratio>`     | string               | e.g. `16:9`, `1:1`. Ignored if `--width` and `--height` are both set |
+| `--n <count>`                | number               | Number of images (default: 1)                                        |
+| `--seed <n>`                 | number               | Random seed for reproducible generation                              |
+| `--width <px>`               | number               | Width in pixels (512–2048, multiple of 8). Requires `--height`       |
+| `--height <px>`              | number               | Height in pixels (512–2048, multiple of 8). Requires `--width`       |
+| `--prompt-optimizer`         | boolean              | Optimize prompt before generation                                    |
+| `--aigc-watermark`           | boolean              | Embed AI-generated content watermark                                 |
+| `--subject-ref <params>`     | string               | Subject reference: `type=character,image=path-or-url`                |
+| `--response-format <format>` | string               | `url` (default) or `base64`. Base64 bypasses CDN download            |
+| `--out-dir <dir>`            | string               | Download images to directory                                         |
+| `--out-prefix <prefix>`      | string               | Filename prefix (default: `image`)                                   |
 
 ```bash
 mmx image generate --prompt "A cat in a spacesuit" --output json --quiet
@@ -123,16 +123,16 @@ Generate video. Default model: `MiniMax-Hailuo-2.3`. This is an async task — b
 mmx video generate --prompt <text> [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--prompt <text>` | string, **required** | Video description |
-| `--model <model>` | string | `MiniMax-Hailuo-2.3` (default) or `MiniMax-Hailuo-2.3-Fast` |
-| `--first-frame <path-or-url>` | string | First frame image |
-| `--callback-url <url>` | string | Webhook URL for completion |
-| `--download <path>` | string | Save video to specific file |
-| `--async` | boolean | Return task ID immediately |
-| `--no-wait` | boolean | Same as `--async` |
-| `--poll-interval <seconds>` | number | Polling interval (default: 5) |
+| Flag                          | Type                 | Description                                                 |
+| ----------------------------- | -------------------- | ----------------------------------------------------------- |
+| `--prompt <text>`             | string, **required** | Video description                                           |
+| `--model <model>`             | string               | `MiniMax-Hailuo-2.3` (default) or `MiniMax-Hailuo-2.3-Fast` |
+| `--first-frame <path-or-url>` | string               | First frame image                                           |
+| `--callback-url <url>`        | string               | Webhook URL for completion                                  |
+| `--download <path>`           | string               | Save video to specific file                                 |
+| `--async`                     | boolean              | Return task ID immediately                                  |
+| `--no-wait`                   | boolean              | Same as `--async`                                           |
+| `--poll-interval <seconds>`   | number               | Polling interval (default: 5)                               |
 
 ```bash
 # Non-blocking: get task ID
@@ -170,25 +170,25 @@ Text-to-speech. Default model: `speech-2.8-hd`. Max 10k chars.
 mmx speech synthesize --text <text> [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--text <text>` | string | Text to synthesize |
-| `--text-file <path>` | string | Read text from file. Use `-` for stdin |
-| `--model <model>` | string | `speech-2.8-hd` (default), `speech-2.6`, `speech-02` |
-| `--voice <id>` | string | Voice ID (default: `English_expressive_narrator`) |
-| `--speed <n>` | number | Speed multiplier |
-| `--volume <n>` | number | Volume level |
-| `--pitch <n>` | number | Pitch adjustment |
-| `--format <fmt>` | string | Audio format (default: `mp3`) |
-| `--sample-rate <hz>` | number | Sample rate (default: 32000) |
-| `--bitrate <bps>` | number | Bitrate (default: 128000) |
-| `--channels <n>` | number | Audio channels (default: 1) |
-| `--language <code>` | string | Language boost |
-| `--subtitles` | boolean | Download and save subtitles as `.srt` file (alongside `--out` audio file). API must support subtitles for the selected model.
-| `--pronunciation <from/to>` | string, repeatable | Custom pronunciation |
-| `--sound-effect <effect>` | string | Add sound effect |
-| `--out <path>` | string | Save audio to file |
-| `--stream` | boolean | Stream raw audio to stdout |
+| Flag                        | Type               | Description                                                                                                                   |
+| --------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `--text <text>`             | string             | Text to synthesize                                                                                                            |
+| `--text-file <path>`        | string             | Read text from file. Use `-` for stdin                                                                                        |
+| `--model <model>`           | string             | `speech-2.8-hd` (default), `speech-2.6`, `speech-02`                                                                          |
+| `--voice <id>`              | string             | Voice ID (default: `English_expressive_narrator`)                                                                             |
+| `--speed <n>`               | number             | Speed multiplier                                                                                                              |
+| `--volume <n>`              | number             | Volume level                                                                                                                  |
+| `--pitch <n>`               | number             | Pitch adjustment                                                                                                              |
+| `--format <fmt>`            | string             | Audio format (default: `mp3`)                                                                                                 |
+| `--sample-rate <hz>`        | number             | Sample rate (default: 32000)                                                                                                  |
+| `--bitrate <bps>`           | number             | Bitrate (default: 128000)                                                                                                     |
+| `--channels <n>`            | number             | Audio channels (default: 1)                                                                                                   |
+| `--language <code>`         | string             | Language boost                                                                                                                |
+| `--subtitles`               | boolean            | Download and save subtitles as `.srt` file (alongside `--out` audio file). API must support subtitles for the selected model. |
+| `--pronunciation <from/to>` | string, repeatable | Custom pronunciation                                                                                                          |
+| `--sound-effect <effect>`   | string             | Add sound effect                                                                                                              |
+| `--out <path>`              | string             | Save audio to file                                                                                                            |
+| `--stream`                  | boolean            | Stream raw audio to stdout                                                                                                    |
 
 ```bash
 mmx speech synthesize --text "Hello world" --out hello.mp3 --quiet
@@ -212,31 +212,31 @@ Generate music. Responds well to rich, structured descriptions.
 mmx music generate --prompt <text> [--lyrics <text>] [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--prompt <text>` | string | Music style description (can be detailed) |
-| `--lyrics <text>` | string | Song lyrics with structure tags. Required unless `--instrumental` or `--lyrics-optimizer` is used. |
-| `--lyrics-file <path>` | string | Read lyrics from file. Use `-` for stdin |
-| `--lyrics-optimizer` | boolean | Auto-generate lyrics from prompt. Cannot be used with `--lyrics` or `--instrumental`. |
-| `--instrumental` | boolean | Generate instrumental music (no vocals). Cannot be used with `--lyrics`. |
-| `--vocals <text>` | string | Vocal style, e.g. `"warm male baritone"`, `"bright female soprano"`, `"duet with harmonies"` |
-| `--genre <text>` | string | Music genre, e.g. folk, pop, jazz |
-| `--mood <text>` | string | Mood or emotion, e.g. warm, melancholic, uplifting |
-| `--instruments <text>` | string | Instruments to feature, e.g. `"acoustic guitar, piano"` |
-| `--tempo <text>` | string | Tempo description, e.g. fast, slow, moderate |
-| `--bpm <number>` | number | Exact tempo in beats per minute |
-| `--key <text>` | string | Musical key, e.g. C major, A minor, G sharp |
-| `--avoid <text>` | string | Elements to avoid in the generated music |
-| `--use-case <text>` | string | Use case context, e.g. `"background music for video"`, `"theme song"` |
-| `--structure <text>` | string | Song structure, e.g. `"verse-chorus-verse-bridge-chorus"` |
-| `--references <text>` | string | Reference tracks or artists, e.g. `"similar to Ed Sheeran"` |
-| `--extra <text>` | string | Additional fine-grained requirements |
-| `--aigc-watermark` | boolean | Embed AI-generated content watermark |
-| `--format <fmt>` | string | Audio format (default: `mp3`) |
-| `--sample-rate <hz>` | number | Sample rate (default: 44100) |
-| `--bitrate <bps>` | number | Bitrate (default: 256000) |
-| `--out <path>` | string | Save audio to file |
-| `--stream` | boolean | Stream raw audio to stdout |
+| Flag                   | Type    | Description                                                                                        |
+| ---------------------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `--prompt <text>`      | string  | Music style description (can be detailed)                                                          |
+| `--lyrics <text>`      | string  | Song lyrics with structure tags. Required unless `--instrumental` or `--lyrics-optimizer` is used. |
+| `--lyrics-file <path>` | string  | Read lyrics from file. Use `-` for stdin                                                           |
+| `--lyrics-optimizer`   | boolean | Auto-generate lyrics from prompt. Cannot be used with `--lyrics` or `--instrumental`.              |
+| `--instrumental`       | boolean | Generate instrumental music (no vocals). Cannot be used with `--lyrics`.                           |
+| `--vocals <text>`      | string  | Vocal style, e.g. `"warm male baritone"`, `"bright female soprano"`, `"duet with harmonies"`       |
+| `--genre <text>`       | string  | Music genre, e.g. folk, pop, jazz                                                                  |
+| `--mood <text>`        | string  | Mood or emotion, e.g. warm, melancholic, uplifting                                                 |
+| `--instruments <text>` | string  | Instruments to feature, e.g. `"acoustic guitar, piano"`                                            |
+| `--tempo <text>`       | string  | Tempo description, e.g. fast, slow, moderate                                                       |
+| `--bpm <number>`       | number  | Exact tempo in beats per minute                                                                    |
+| `--key <text>`         | string  | Musical key, e.g. C major, A minor, G sharp                                                        |
+| `--avoid <text>`       | string  | Elements to avoid in the generated music                                                           |
+| `--use-case <text>`    | string  | Use case context, e.g. `"background music for video"`, `"theme song"`                              |
+| `--structure <text>`   | string  | Song structure, e.g. `"verse-chorus-verse-bridge-chorus"`                                          |
+| `--references <text>`  | string  | Reference tracks or artists, e.g. `"similar to Ed Sheeran"`                                        |
+| `--extra <text>`       | string  | Additional fine-grained requirements                                                               |
+| `--aigc-watermark`     | boolean | Embed AI-generated content watermark                                                               |
+| `--format <fmt>`       | string  | Audio format (default: `mp3`)                                                                      |
+| `--sample-rate <hz>`   | number  | Sample rate (default: 44100)                                                                       |
+| `--bitrate <bps>`      | number  | Bitrate (default: 256000)                                                                          |
+| `--out <path>`         | string  | Save audio to file                                                                                 |
+| `--stream`             | boolean | Stream raw audio to stdout                                                                         |
 
 At least one of `--prompt` or `--lyrics` is required.
 
@@ -271,20 +271,20 @@ Generate a cover version of a song based on reference audio.
 mmx music cover --prompt <text> (--audio <url> | --audio-file <path>) [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--prompt <text>` | string, **required** | Target cover style, e.g. `"Indie folk, acoustic guitar, warm male vocal"` |
-| `--audio <url>` | string | URL of reference audio (mp3, wav, flac, etc. — 6s to 6min, max 50MB) |
-| `--audio-file <path>` | string | Local reference audio file (auto base64-encoded) |
-| `--lyrics <text>` | string | Cover lyrics. If omitted, extracted from reference audio via ASR. |
-| `--lyrics-file <path>` | string | Read lyrics from file. Use `-` for stdin |
-| `--seed <number>` | number | Random seed 0–1000000 for reproducible results |
-| `--format <fmt>` | string | Audio format: `mp3`, `wav`, `pcm` (default: `mp3`) |
-| `--sample-rate <hz>` | number | Sample rate (default: 44100) |
-| `--bitrate <bps>` | number | Bitrate (default: 256000) |
-| `--channel <n>` | number | Channels: `1` (mono) or `2` (stereo, default) |
-| `--out <path>` | string | Save audio to file |
-| `--stream` | boolean | Stream raw audio to stdout |
+| Flag                   | Type                 | Description                                                               |
+| ---------------------- | -------------------- | ------------------------------------------------------------------------- |
+| `--prompt <text>`      | string, **required** | Target cover style, e.g. `"Indie folk, acoustic guitar, warm male vocal"` |
+| `--audio <url>`        | string               | URL of reference audio (mp3, wav, flac, etc. — 6s to 6min, max 50MB)      |
+| `--audio-file <path>`  | string               | Local reference audio file (auto base64-encoded)                          |
+| `--lyrics <text>`      | string               | Cover lyrics. If omitted, extracted from reference audio via ASR.         |
+| `--lyrics-file <path>` | string               | Read lyrics from file. Use `-` for stdin                                  |
+| `--seed <number>`      | number               | Random seed 0–1000000 for reproducible results                            |
+| `--format <fmt>`       | string               | Audio format: `mp3`, `wav`, `pcm` (default: `mp3`)                        |
+| `--sample-rate <hz>`   | number               | Sample rate (default: 44100)                                              |
+| `--bitrate <bps>`      | number               | Bitrate (default: 256000)                                                 |
+| `--channel <n>`        | number               | Channels: `1` (mono) or `2` (stereo, default)                             |
+| `--out <path>`         | string               | Save audio to file                                                        |
+| `--stream`             | boolean              | Stream raw audio to stdout                                                |
 
 ```bash
 # Cover from URL
@@ -309,11 +309,11 @@ Image understanding via VLM. Provide either `--image` or `--file-id`, not both.
 mmx vision describe (--image <path-or-url> | --file-id <id>) [flags]
 ```
 
-| Flag | Type | Description |
-|---|---|---|
-| `--image <path-or-url>` | string | Local path or URL (auto base64-encoded) |
-| `--file-id <id>` | string | Pre-uploaded file ID (skips base64) |
-| `--prompt <text>` | string | Question about the image (default: `"Describe the image."`) |
+| Flag                    | Type   | Description                                                 |
+| ----------------------- | ------ | ----------------------------------------------------------- |
+| `--image <path-or-url>` | string | Local path or URL (auto base64-encoded)                     |
+| `--file-id <id>`        | string | Pre-uploaded file ID (skips base64)                         |
+| `--prompt <text>`       | string | Question about the image (default: `"Describe the image."`) |
 
 ```bash
 mmx vision describe --image photo.jpg --prompt "What breed?" --output json
@@ -331,8 +331,8 @@ Web search via MiniMax.
 mmx search query --q <query>
 ```
 
-| Flag | Type | Description |
-|---|---|---|
+| Flag          | Type                 | Description  |
+| ------------- | -------------------- | ------------ |
 | `--q <query>` | string, **required** | Search query |
 
 ```bash
@@ -369,15 +369,15 @@ Use this to dynamically register mmx commands as tools in your agent framework.
 
 ## Exit Codes
 
-| Code | Meaning |
-|---|---|
-| 0 | Success |
-| 1 | General error |
-| 2 | Usage error (bad flags, missing args) |
-| 3 | Authentication error |
-| 4 | Quota exceeded |
-| 5 | Timeout |
-| 10 | Content filter triggered |
+| Code | Meaning                               |
+| ---- | ------------------------------------- |
+| 0    | Success                               |
+| 1    | General error                         |
+| 2    | Usage error (bad flags, missing args) |
+| 3    | Authentication error                  |
+| 4    | Quota exceeded                        |
+| 5    | Timeout                               |
+| 10   | Content filter triggered              |
 
 ---
 
