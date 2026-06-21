@@ -1,6 +1,6 @@
 # Dating
 
-Warm-witty dating JD and CV site for Tien Nguyen Minh.
+Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 ## Pages
 
@@ -12,7 +12,8 @@ Warm-witty dating JD and CV site for Tien Nguyen Minh.
 
 - Light theme: white and blue
 - Dark theme: black and pink
-- English and Vietnamese copy switch
+- Compact emoji theme switch and flag language switch
+- English and full Vietnamese copy switch
 - Static i18n and theme preferences persisted in the browser
 
 ## Tech

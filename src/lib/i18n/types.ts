@@ -22,9 +22,7 @@ export type SiteCopy = {
 	controls: {
 		themeGroup: string;
 		languageGroup: string;
-		themes: Record<Theme, string>;
 		themeActions: Record<Theme, string>;
-		languages: Record<Locale, string>;
 		languageActions: Record<Locale, string>;
 	};
 	home: {

@@ -4,7 +4,7 @@ export const en: SiteCopy = {
 	layout: {
 		skipLink: 'Skip to content',
 		brand: 'Dating JD & CV',
-		homeAria: 'Dating JD and CV home',
+		homeAria: 'Dating JD and CV home for Tiến Nguyễn Minh',
 		primaryNavAria: 'Primary navigation'
 	},
 	nav: {
@@ -15,17 +15,9 @@ export const en: SiteCopy = {
 	controls: {
 		themeGroup: 'Theme',
 		languageGroup: 'Language',
-		themes: {
-			light: 'Light',
-			dark: 'Dark'
-		},
 		themeActions: {
 			light: 'Use light theme',
 			dark: 'Use dark theme'
-		},
-		languages: {
-			en: 'EN',
-			vi: 'VI'
 		},
 		languageActions: {
 			en: 'Use English',
@@ -33,10 +25,10 @@ export const en: SiteCopy = {
 		}
 	},
 	home: {
-		metaTitle: 'Tien Nguyen Minh | Dating JD & CV',
-		metaDescription: 'A warm-witty dating job description and CV for Tien Nguyen Minh.',
+		metaTitle: 'Tiến Nguyễn Minh | Dating JD & CV',
+		metaDescription: 'A warm-witty dating job description and CV for Tiến Nguyễn Minh.',
 		heroEyebrow: 'Open role / long-term partner',
-		title: 'Tien Nguyen Minh',
+		title: 'Tiến Nguyễn Minh',
 		lead: 'A small application packet for one future lover: equal parts job description, personal CV, and honest invitation to build something kind.',
 		primaryCta: 'Read the JD',
 		secondaryCta: 'Review the CV',
@@ -90,10 +82,10 @@ export const en: SiteCopy = {
 			'No pressure test. No hidden puzzle round. Strong candidates are kind when tired, direct when confused, and willing to choose each other in small boring moments.'
 	},
 	cv: {
-		metaTitle: 'CV | Tien Nguyen Minh',
-		metaDescription: 'A warm personal CV for Tien Nguyen Minh, rewritten for a future lover.',
+		metaTitle: 'CV | Tiến Nguyễn Minh',
+		metaDescription: 'A warm personal CV for Tiến Nguyễn Minh, rewritten for a future lover.',
 		heroEyebrow: 'Candidate CV',
-		title: 'Tien Nguyen Minh',
+		title: 'Tiến Nguyễn Minh',
 		lead: 'Senior Software Engineer, backend systems builder, game-server caretaker, and candidate for one emotionally responsible long-term partnership.',
 		summaryAria: 'Candidate summary',
 		strengthsEyebrow: 'Core strengths',

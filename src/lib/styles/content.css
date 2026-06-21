@@ -26,6 +26,7 @@
 	justify-content: center;
 	padding: 0.85rem 1.1rem;
 	border: 1px solid var(--primary);
+	border-radius: 8px;
 	background: var(--primary);
 	color: var(--on-primary);
 	font-weight: 700;
@@ -65,9 +66,15 @@
 
 .panel {
 	border-left: 4px solid var(--sage);
+	border-radius: 8px;
 	background: var(--panel-bg);
 	padding: clamp(1.1rem, 3vw, 1.6rem);
 	box-shadow: 0 1px 0 var(--line);
+	transition:
+		background-color var(--motion-theme),
+		border-color var(--motion-theme),
+		box-shadow var(--motion-theme),
+		color var(--motion-theme);
 }
 
 .panel.strong {
@@ -80,12 +87,16 @@
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1px;
 	margin-top: 2rem;
+	overflow: hidden;
+	border-radius: 8px;
 	background: var(--line);
+	transition: background-color var(--motion-theme);
 }
 
 .meta-grid > div {
 	background: var(--panel-bg);
 	padding: 1rem;
+	transition: background-color var(--motion-theme);
 }
 
 .meta-grid span {

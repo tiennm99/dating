@@ -20,6 +20,8 @@
 	--line: rgba(31, 111, 235, 0.2);
 	--glow-primary: rgba(31, 111, 235, 0.18);
 	--shadow: 0 24px 70px rgba(16, 32, 51, 0.14);
+	--motion-fast: 160ms ease;
+	--motion-theme: 260ms ease;
 	--hero-ink: #ffffff;
 	--hero-muted: rgba(255, 255, 255, 0.86);
 	--hero-accent: #9dccff;
@@ -76,12 +78,29 @@ body {
 		radial-gradient(circle at 12% 0%, var(--glow-primary), transparent 30rem),
 		linear-gradient(120deg, var(--background) 0%, var(--surface) 54%, var(--surface-muted) 100%);
 	color: var(--ink);
+	transition:
+		background var(--motion-theme),
+		color var(--motion-theme);
 }
 
 a {
 	color: inherit;
 	text-decoration-thickness: 0.08em;
 	text-underline-offset: 0.24em;
+	transition:
+		background-color var(--motion-fast),
+		border-color var(--motion-fast),
+		color var(--motion-fast);
+}
+
+button {
+	transition:
+		background-color var(--motion-fast),
+		border-color var(--motion-fast),
+		box-shadow var(--motion-fast),
+		color var(--motion-fast),
+		opacity var(--motion-fast),
+		transform var(--motion-fast);
 }
 
 a:focus-visible,
@@ -125,6 +144,16 @@ ul {
 
 li + li {
 	margin-top: 0.65rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 1ms !important;
+		scroll-behavior: auto !important;
+		transition-duration: 1ms !important;
+	}
 }
 
 @media (max-width: 720px) {

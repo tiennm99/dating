@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import favicon from '$lib/assets/favicon.svg';
 	import {
 		copy,
@@ -17,10 +18,20 @@
 	let { children } = $props();
 
 	const navItems = [
-		{ href: resolve('/'), labelKey: 'home' },
-		{ href: resolve('/jd/'), labelKey: 'jd' },
-		{ href: resolve('/cv/'), labelKey: 'cv' }
+		{ href: resolve('/'), labelKey: 'home', routeId: '/' },
+		{ href: resolve('/jd/'), labelKey: 'jd', routeId: '/jd' },
+		{ href: resolve('/cv/'), labelKey: 'cv', routeId: '/cv' }
 	] as const;
+
+	const themeIcons = {
+		light: '☀️',
+		dark: '🌙'
+	} as const;
+
+	const localeIcons = {
+		en: '🇺🇸',
+		vi: '🇻🇳'
+	} as const;
 
 	onMount(initializePreferences);
 </script>
@@ -40,43 +51,53 @@
 	<div class="header-actions">
 		<nav aria-label={$copy.layout.primaryNavAria}>
 			{#each navItems as item (item.href)}
-				<a href={item.href}>{$copy.nav[item.labelKey]}</a>
+				<a
+					href={item.href}
+					class:active={page.route.id === item.routeId}
+					aria-current={page.route.id === item.routeId ? 'page' : undefined}
+				>
+					{$copy.nav[item.labelKey]}
+				</a>
 			{/each}
 		</nav>
 
 		<div class="preference-controls">
-			<div class="preference-group" role="group" aria-label={$copy.controls.themeGroup}>
-				<span class="preference-label">{$copy.controls.themeGroup}</span>
-				<div class="segmented-control">
-					{#each themeOptions as option (option)}
-						<button
-							type="button"
-							class:active={$theme === option}
-							aria-label={$copy.controls.themeActions[option]}
-							aria-pressed={$theme === option}
-							onclick={() => setTheme(option)}
-						>
-							{$copy.controls.themes[option]}
-						</button>
-					{/each}
-				</div>
+			<div
+				class="segmented-control icon-segmented"
+				role="group"
+				aria-label={$copy.controls.themeGroup}
+			>
+				{#each themeOptions as option (option)}
+					<button
+						type="button"
+						class:active={$theme === option}
+						aria-label={$copy.controls.themeActions[option]}
+						aria-pressed={$theme === option}
+						title={$copy.controls.themeActions[option]}
+						onclick={() => setTheme(option)}
+					>
+						<span aria-hidden="true">{themeIcons[option]}</span>
+					</button>
+				{/each}
 			</div>
 
-			<div class="preference-group" role="group" aria-label={$copy.controls.languageGroup}>
-				<span class="preference-label">{$copy.controls.languageGroup}</span>
-				<div class="segmented-control">
-					{#each localeOptions as option (option)}
-						<button
-							type="button"
-							class:active={$locale === option}
-							aria-label={$copy.controls.languageActions[option]}
-							aria-pressed={$locale === option}
-							onclick={() => setLocale(option)}
-						>
-							{$copy.controls.languages[option]}
-						</button>
-					{/each}
-				</div>
+			<div
+				class="segmented-control icon-segmented"
+				role="group"
+				aria-label={$copy.controls.languageGroup}
+			>
+				{#each localeOptions as option (option)}
+					<button
+						type="button"
+						class:active={$locale === option}
+						aria-label={$copy.controls.languageActions[option]}
+						aria-pressed={$locale === option}
+						title={$copy.controls.languageActions[option]}
+						onclick={() => setLocale(option)}
+					>
+						<span aria-hidden="true">{localeIcons[option]}</span>
+					</button>
+				{/each}
 			</div>
 		</div>
 	</div>

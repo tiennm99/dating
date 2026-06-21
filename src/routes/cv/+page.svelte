@@ -66,7 +66,10 @@
 	.facts-list {
 		display: grid;
 		gap: 1px;
+		overflow: hidden;
+		border-radius: 8px;
 		background: var(--line);
+		transition: background-color var(--motion-theme);
 	}
 
 	.facts-list div {
@@ -75,6 +78,7 @@
 		gap: 1rem;
 		background: var(--panel-bg);
 		padding: 1rem;
+		transition: background-color var(--motion-theme);
 	}
 
 	.facts-list span {
