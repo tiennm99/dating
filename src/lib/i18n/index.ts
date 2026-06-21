@@ -4,7 +4,7 @@ import { localeOptions, themeOptions, type Locale, type SiteCopy, type Theme } f
 
 export * from './types';
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'vi';
 export const defaultTheme: Theme = 'light';
 
 export const messages = {

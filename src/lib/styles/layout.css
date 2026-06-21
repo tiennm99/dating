@@ -147,17 +147,15 @@ nav a.active {
 	box-shadow: 0 10px 24px var(--glow-primary);
 }
 
-.flag-icon {
-	display: block;
-	width: 1.35rem;
-	height: 0.9rem;
-	overflow: hidden;
-	border-radius: 2px;
-	box-shadow: 0 0 0 1px rgba(16, 32, 51, 0.2);
+.emoji-icon {
+	font-family:
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
 }
 
-.segmented-control button.active .flag-icon {
-	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.58);
+.locale-code {
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.03em;
 }
 
 @media (max-width: 720px) {

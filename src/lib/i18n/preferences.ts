@@ -29,7 +29,7 @@ function readStoredLocale(): Locale {
 	const storedLocale = readStorage(localeStorageKey);
 	if (isLocale(storedLocale)) return storedLocale;
 
-	return navigator.language.toLowerCase().startsWith('vi') ? 'vi' : defaultLocale;
+	return defaultLocale;
 }
 
 function readStoredTheme(): Theme {

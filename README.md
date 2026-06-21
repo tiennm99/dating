@@ -12,8 +12,9 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 - Light theme: white and blue
 - Dark theme: black and pink
-- Compact emoji theme switch and vector flag language switch
+- Compact emoji theme switch and VI/EN language switch
 - English and full Vietnamese copy switch
+- Vietnamese is the default locale
 - Static i18n and theme preferences persisted in the browser
 
 ## Tech

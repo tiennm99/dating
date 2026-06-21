@@ -1,4 +1,4 @@
-export const localeOptions = ['en', 'vi'] as const;
+export const localeOptions = ['vi', 'en'] as const;
 export type Locale = (typeof localeOptions)[number];
 
 export const themeOptions = ['light', 'dark'] as const;

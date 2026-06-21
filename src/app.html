@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,12 +11,7 @@
 					const storedTheme = localStorage.getItem('dating-theme');
 					const storedLocale = localStorage.getItem('dating-locale');
 					const theme = storedTheme === 'dark' ? 'dark' : 'light';
-					const locale =
-						storedLocale === 'vi' || storedLocale === 'en'
-							? storedLocale
-							: navigator.language.toLowerCase().startsWith('vi')
-								? 'vi'
-								: 'en';
+					const locale = storedLocale === 'vi' || storedLocale === 'en' ? storedLocale : 'vi';
 
 					root.dataset.theme = theme;
 					root.lang = locale;
