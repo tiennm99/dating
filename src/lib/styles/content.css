@@ -1,6 +1,6 @@
 .eyebrow {
 	margin: 0 0 1rem;
-	color: var(--oxblood);
+	color: var(--primary);
 	font-size: 0.78rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
@@ -25,9 +25,9 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0.85rem 1.1rem;
-	border: 1px solid var(--ink);
-	background: var(--ink);
-	color: white;
+	border: 1px solid var(--primary);
+	background: var(--primary);
+	color: var(--on-primary);
 	font-weight: 700;
 	text-decoration: none;
 	transition:
@@ -37,12 +37,14 @@
 
 .button:hover {
 	transform: translateY(-2px);
-	background: var(--oxblood);
+	border-color: var(--primary-strong);
+	background: var(--primary-strong);
+	color: var(--on-primary);
 }
 
 .button.secondary {
 	background: transparent;
-	color: var(--ink);
+	color: var(--primary-strong);
 }
 
 .page-section {
@@ -63,7 +65,7 @@
 
 .panel {
 	border-left: 4px solid var(--sage);
-	background: rgba(247, 244, 237, 0.76);
+	background: var(--panel-bg);
 	padding: clamp(1.1rem, 3vw, 1.6rem);
 	box-shadow: 0 1px 0 var(--line);
 }
@@ -82,13 +84,13 @@
 }
 
 .meta-grid > div {
-	background: rgba(247, 244, 237, 0.82);
+	background: var(--panel-bg);
 	padding: 1rem;
 }
 
 .meta-grid span {
 	display: block;
-	color: var(--blueprint);
+	color: var(--muted);
 	font-size: 0.78rem;
 	font-weight: 700;
 	text-transform: uppercase;

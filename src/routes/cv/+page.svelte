@@ -1,24 +1,18 @@
 <script lang="ts">
-	import { cvFacts, cvStrengths } from '$lib/site-content';
+	import { copy } from '$lib/i18n/preferences';
 </script>
 
 <svelte:head>
-	<title>CV | Tien Nguyen Minh</title>
-	<meta
-		name="description"
-		content="A warm personal CV for Tien Nguyen Minh, rewritten for a future lover."
-	/>
+	<title>{$copy.cv.metaTitle}</title>
+	<meta name="description" content={$copy.cv.metaDescription} />
 </svelte:head>
 
 <section class="site-shell page-section cv-hero">
-	<p class="eyebrow">Candidate CV</p>
-	<h1>Tien Nguyen Minh</h1>
-	<p class="lead">
-		Senior Software Engineer, backend systems builder, game-server caretaker, and candidate for one
-		emotionally responsible long-term partnership.
-	</p>
-	<div class="meta-grid" aria-label="Candidate summary">
-		{#each cvFacts.slice(0, 3) as fact (fact[0])}
+	<p class="eyebrow">{$copy.cv.heroEyebrow}</p>
+	<h1>{$copy.cv.title}</h1>
+	<p class="lead">{$copy.cv.lead}</p>
+	<div class="meta-grid" aria-label={$copy.cv.summaryAria}>
+		{#each $copy.cv.facts.slice(0, 3) as fact (fact[0])}
 			<div><span>{fact[0]}</span>{fact[1]}</div>
 		{/each}
 	</div>
@@ -26,11 +20,11 @@
 
 <section class="site-shell page-section section-grid" aria-labelledby="strengths-title">
 	<div>
-		<p class="eyebrow">Core strengths</p>
-		<h2 id="strengths-title">Why shortlist this candidate.</h2>
+		<p class="eyebrow">{$copy.cv.strengthsEyebrow}</p>
+		<h2 id="strengths-title">{$copy.cv.strengthsTitle}</h2>
 	</div>
 	<div class="panel-list">
-		{#each cvStrengths as strength (strength.title)}
+		{#each $copy.cv.strengths as strength (strength.title)}
 			<article class="panel">
 				<h3>{strength.title}</h3>
 				<p>{strength.body}</p>
@@ -41,11 +35,11 @@
 
 <section class="site-shell page-section section-grid" aria-labelledby="facts-title">
 	<div>
-		<p class="eyebrow">Reference sheet</p>
-		<h2 id="facts-title">Useful facts.</h2>
+		<p class="eyebrow">{$copy.cv.factsEyebrow}</p>
+		<h2 id="facts-title">{$copy.cv.factsTitle}</h2>
 	</div>
 	<div class="facts-list">
-		{#each cvFacts as fact (fact[0])}
+		{#each $copy.cv.facts as fact (fact[0])}
 			<div>
 				<span>{fact[0]}</span>
 				<strong>{fact[1]}</strong>
@@ -56,14 +50,11 @@
 
 <section class="site-shell page-section section-grid" aria-labelledby="closing-title">
 	<div>
-		<p class="eyebrow">Closing statement</p>
-		<h2 id="closing-title">The honest version.</h2>
+		<p class="eyebrow">{$copy.cv.closingEyebrow}</p>
+		<h2 id="closing-title">{$copy.cv.closingTitle}</h2>
 	</div>
 	<article class="panel strong">
-		<p>
-			I am not a perfect product. I am a maintained system: observable, sometimes stubborn,
-			generally reliable, and much better with the right person reviewing the roadmap.
-		</p>
+		<p>{$copy.cv.closingBody}</p>
 	</article>
 </section>
 
@@ -82,7 +73,7 @@
 		display: grid;
 		grid-template-columns: minmax(9rem, 0.7fr) 1fr;
 		gap: 1rem;
-		background: rgba(247, 244, 237, 0.86);
+		background: var(--panel-bg);
 		padding: 1rem;
 	}
 

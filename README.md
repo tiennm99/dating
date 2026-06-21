@@ -8,6 +8,13 @@ Warm-witty dating JD and CV site for Tien Nguyen Minh.
 - `/jd/` future lover job description
 - `/cv/` candidate CV
 
+## Features
+
+- Light theme: white and blue
+- Dark theme: black and pink
+- English and Vietnamese copy switch
+- Static i18n and theme preferences persisted in the browser
+
 ## Tech
 
 - SvelteKit 2

@@ -2,17 +2,63 @@
 
 :root {
 	font-family: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
-	color: #1d2930;
-	background: #eef1ee;
-	--ink: #1d2930;
-	--paper: #f7f4ed;
-	--mist: #dfe8e2;
-	--sage: #637f74;
-	--oxblood: #9d3f45;
-	--brass: #c7964f;
-	--blueprint: #415f6b;
-	--line: rgba(29, 41, 48, 0.16);
-	--shadow: 0 24px 70px rgba(29, 41, 48, 0.14);
+	color: var(--ink);
+	background: var(--background);
+	color-scheme: light;
+	--background: #f7fbff;
+	--surface: #ffffff;
+	--surface-muted: #eaf3ff;
+	--surface-translucent: rgba(255, 255, 255, 0.86);
+	--panel-bg: rgba(255, 255, 255, 0.82);
+	--header-bg: rgba(247, 251, 255, 0.84);
+	--ink: #102033;
+	--muted: #4d6685;
+	--primary: #1f6feb;
+	--primary-strong: #0a52bd;
+	--on-primary: #ffffff;
+	--focus: #0b70ff;
+	--line: rgba(31, 111, 235, 0.2);
+	--glow-primary: rgba(31, 111, 235, 0.18);
+	--shadow: 0 24px 70px rgba(16, 32, 51, 0.14);
+	--hero-ink: #ffffff;
+	--hero-muted: rgba(255, 255, 255, 0.86);
+	--hero-accent: #9dccff;
+	--hero-border: rgba(255, 255, 255, 0.72);
+	--hero-overlay-start: rgba(5, 33, 72, 0.86);
+	--hero-overlay-mid: rgba(5, 64, 132, 0.5);
+	--hero-overlay-end: rgba(5, 64, 132, 0.08);
+	--paper: var(--surface);
+	--mist: var(--surface-muted);
+	--sage: var(--primary);
+	--oxblood: var(--primary-strong);
+	--brass: var(--focus);
+	--blueprint: var(--muted);
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+	--background: #050507;
+	--surface: #101014;
+	--surface-muted: #1b131b;
+	--surface-translucent: rgba(16, 16, 20, 0.86);
+	--panel-bg: rgba(18, 16, 22, 0.88);
+	--header-bg: rgba(5, 5, 7, 0.82);
+	--ink: #fff5fb;
+	--muted: #d8b9cc;
+	--primary: #ff4fa3;
+	--primary-strong: #ff7ac2;
+	--on-primary: #1d0611;
+	--focus: #ff8ec8;
+	--line: rgba(255, 79, 163, 0.28);
+	--glow-primary: rgba(255, 79, 163, 0.22);
+	--shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+	--hero-ink: #fff5fb;
+	--hero-muted: rgba(255, 245, 251, 0.84);
+	--hero-accent: #ff9bd0;
+	--hero-border: rgba(255, 245, 251, 0.72);
+	--hero-overlay-start: rgba(5, 5, 7, 0.92);
+	--hero-overlay-mid: rgba(52, 10, 32, 0.62);
+	--hero-overlay-end: rgba(255, 79, 163, 0.1);
 }
 
 * {
@@ -27,8 +73,8 @@ body {
 	margin: 0;
 	min-width: 320px;
 	background:
-		radial-gradient(circle at 12% 0%, rgba(99, 127, 116, 0.18), transparent 30rem),
-		linear-gradient(120deg, #eef1ee 0%, #f7f4ed 54%, #e4ece8 100%);
+		radial-gradient(circle at 12% 0%, var(--glow-primary), transparent 30rem),
+		linear-gradient(120deg, var(--background) 0%, var(--surface) 54%, var(--surface-muted) 100%);
 	color: var(--ink);
 }
 
@@ -38,8 +84,9 @@ a {
 	text-underline-offset: 0.24em;
 }
 
-a:focus-visible {
-	outline: 3px solid var(--brass);
+a:focus-visible,
+button:focus-visible {
+	outline: 3px solid var(--focus);
 	outline-offset: 4px;
 }
 
