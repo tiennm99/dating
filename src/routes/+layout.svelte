@@ -38,6 +38,20 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Dating JD & CV" />
+	<meta
+		property="og:image"
+		content="https://tiennm99.github.io/dating/assets/social/dating-jd-cv-social-preview.png"
+	/>
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Warm dating application packet illustration" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta
+		name="twitter:image"
+		content="https://tiennm99.github.io/dating/assets/social/dating-jd-cv-social-preview.png"
+	/>
 </svelte:head>
 
 <a class="skip-link" href="#content">{$copy.layout.skipLink}</a>
