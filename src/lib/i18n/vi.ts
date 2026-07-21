@@ -82,44 +82,48 @@ export const vi: SiteCopy = {
 	},
 	cv: {
 		metaTitle: 'Hồ sơ cá nhân | Tiến Nguyễn Minh',
-		metaDescription: 'Hồ sơ cá nhân ấm áp của Tiến Nguyễn Minh, viết lại cho người yêu tương lai.',
+		metaDescription:
+			'Hồ sơ hẹn hò chân thành của một anh dev hướng nội, mê máy tính, light novel và game.',
 		heroEyebrow: 'Hồ sơ ứng viên',
 		title: 'Tiến Nguyễn Minh',
-		lead: 'Kỹ sư phần mềm cấp cao, người xây hệ thống máy chủ, người chăm sóc máy chủ trò chơi, và ứng viên cho một mối quan hệ dài hạn có trách nhiệm cảm xúc.',
+		lead: 'Một anh dev hơi cù lần, mê máy tính, sống tiết kiệm và đang tìm một người đủ hợp để kéo mình ra khỏi phòng — hoặc cùng ở nhà chơi game cũng được.',
 		summaryAria: 'Tóm tắt ứng viên',
-		strengthsEyebrow: 'Điểm mạnh cốt lõi',
-		strengthsTitle: 'Vì sao nên đưa vào danh sách ưu tiên.',
+		strengthsEyebrow: 'Chân dung nhanh',
+		strengthsTitle: 'Có gì trong hồ sơ này?',
 		strengths: [
 			{
-				title: 'Đáng tin khi tải cao',
-				body: 'Kỹ sư phần mềm cấp cao tại ZingPlay Game Studios, VNG Corp., với hơn 5 năm xây dựng và vận hành hệ thống máy chủ cho trò chơi nhiều người chơi thời gian thực.'
+				title: 'Hướng nội có nghề',
+				body: 'Là dev, khá nghiện máy tính và thường chọn ở nhà. Vẫn muốn đi đây đi đó, chỉ là hơi lười nếu phải đi một mình.'
 			},
 			{
-				title: 'Tư duy xây dựng',
-				body: 'Quen biến ý tưởng mơ hồ thành hệ thống chạy được bằng Java, Go, TypeScript, Docker, tích hợp liên tục, và rất nhiều gỡ lỗi thực tế.'
+				title: 'Wibu nửa mùa',
+				body: 'Thích light novel hơn manga và anime; isekai là thể loại chân ái. Thời gian rảnh còn dành cho Genshin, TFT và cổ vũ T1 — đặc biệt là Keria.'
 			},
 			{
-				title: 'Nghĩ đường dài',
-				body: 'Duy trì hệ thống đang vận hành, kiểm thử các luồng quan trọng khi phát hành, và thích sửa bền hơn là nói cho kịch tính.'
+				title: 'Sống đơn giản',
+				body: 'Gia cảnh bình thường, quen chi tiêu tiết kiệm và không chạy theo lối sống hào nhoáng. Cũng xin nói trước là không thích thú cưng.'
 			},
 			{
-				title: 'Vẫn đang nâng cấp',
-				body: 'Giáo trình hiện tại gồm giao tiếp rõ hơn, thói quen tốt hơn, đồng cảm sâu hơn, và nhớ rằng nghỉ ngơi cũng là một tính năng.'
+				title: 'Thành thật từ đầu',
+				body: 'Hơi thiếu kỹ năng sống, có chút tâm linh và cũng hơi… tà răm. Điểm yếu đặc biệt: đôi chân đẹp.'
 			}
 		],
-		factsEyebrow: 'Thông tin tham khảo',
-		factsTitle: 'Một vài dữ kiện hữu ích.',
+		factsEyebrow: 'Thông tin nhanh',
+		factsTitle: 'Để đỡ mất công đoán.',
 		facts: [
-			['Vai trò hiện tại', 'Kỹ sư phần mềm cấp cao'],
-			['Nghề chính', 'Hệ thống máy chủ cho trò chơi nhiều người chơi'],
-			['Ngôn ngữ', 'Java, Go, TypeScript, Shell'],
-			['Địa điểm', 'TP. Hồ Chí Minh, Việt Nam'],
-			['Học vấn', 'Khoa học và Kỹ thuật Máy tính, HCMUT'],
-			['Chế độ quan hệ', 'Trang tĩnh trước, trò chuyện thật sau']
+			['Nghề nghiệp', 'Lập trình viên'],
+			['Đang ở', 'Đi làm và thuê trọ tại Quận 7'],
+			['Quê quán', 'Long An, nay là Tây Ninh'],
+			['Gu giải trí', 'Light novel, isekai, Genshin và TFT'],
+			['Đội tuyển yêu thích', 'T1 — bias Keria'],
+			['Lối sống', 'Ở nhà, mê máy tính và chi tiêu tiết kiệm'],
+			['Thú cưng', 'Không hợp lắm'],
+			['Tâm linh', 'Tuổi Mão 🐱; hợp tuổi Thân 🐒, Dần 🐯, Tỵ 🐍, Ngọ 🐴, Hợi 🐷, Thìn 🐉 và Tuất 🐶'],
+			['Góc riêng tư', 'Hơi tà răm; có thiện cảm đặc biệt với đôi chân đẹp']
 		],
 		closingEyebrow: 'Lời kết',
-		closingTitle: 'Phiên bản thành thật.',
+		closingTitle: 'Muốn biết thêm thì mình kết nối nhé.',
 		closingBody:
-			'Tôi không phải một sản phẩm hoàn hảo. Tôi là một hệ thống được bảo trì: có thể quan sát, đôi khi cứng đầu, nhìn chung đáng tin, và tốt hơn nhiều khi có đúng người cùng xem lại lộ trình.'
+			'Cảm ơn bạn đã ghé đến tận đây. Hồ sơ chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ kết nối để mình tìm hiểu nhau thêm nhé.'
 	}
 };

@@ -83,44 +83,48 @@ export const en: SiteCopy = {
 	},
 	cv: {
 		metaTitle: 'CV | Tiến Nguyễn Minh',
-		metaDescription: 'A warm personal CV for Tiến Nguyễn Minh, rewritten for a future lover.',
+		metaDescription:
+			'An honest dating CV from an introverted developer who loves computers, light novels, and games.',
 		heroEyebrow: 'Candidate CV',
 		title: 'Tiến Nguyễn Minh',
-		lead: 'Senior Software Engineer, backend systems builder, game-server caretaker, and candidate for one emotionally responsible long-term partnership.',
+		lead: 'A slightly awkward developer, computer enthusiast, and careful spender looking for someone who can coax him outside — or happily stay in and game together.',
 		summaryAria: 'Candidate summary',
-		strengthsEyebrow: 'Core strengths',
-		strengthsTitle: 'Why shortlist this candidate.',
+		strengthsEyebrow: 'Quick portrait',
+		strengthsTitle: "What's in this profile?",
 		strengths: [
 			{
-				title: 'Reliable under load',
-				body: 'Senior Software Engineer at ZingPlay Game Studios, VNG Corp., with 5+ years building and operating real-time multiplayer game backends.'
+				title: 'A professional homebody',
+				body: 'A developer who is rather attached to his computer and usually stays home. He does want to go out more, but rarely feels motivated to do it alone.'
 			},
 			{
-				title: 'Builder mindset',
-				body: 'Comfortable turning vague ideas into running systems with Java, Go, TypeScript, Docker, CI, and a lot of practical debugging.'
+				title: 'Part-time otaku',
+				body: 'Prefers light novels to manga and anime, with isekai firmly at the top. Also plays Genshin and TFT, and cheers for T1 — especially Keria.'
 			},
 			{
-				title: 'Long-game thinker',
-				body: 'Maintains production systems, tests release-critical flows, and prefers durable fixes over dramatic hot takes.'
+				title: 'Simple by choice',
+				body: 'Comes from an ordinary family, spends carefully, and has little interest in a flashy lifestyle. One honest caveat: pets are not his thing.'
 			},
 			{
-				title: 'Still improving',
-				body: 'Active curriculum includes clearer communication, better routines, deeper empathy, and remembering that rest is also a feature.'
+				title: 'Honest from the start',
+				body: 'Still developing some everyday life skills, a little spiritual, and a little… naughty. Particular weakness: beautiful feet.'
 			}
 		],
-		factsEyebrow: 'Reference sheet',
-		factsTitle: 'Useful facts.',
+		factsEyebrow: 'Quick facts',
+		factsTitle: 'So you do not have to guess.',
 		facts: [
-			['Current role', 'Senior Software Engineer'],
-			['Main craft', 'Backend systems for multiplayer games'],
-			['Languages', 'Java, Go, TypeScript, Shell'],
-			['Location', 'Ho Chi Minh City, Vietnam'],
-			['Education', 'Computer Science and Engineering, HCMUT'],
-			['Relationship mode', 'Static site first, real conversation later']
+			['Occupation', 'Software developer'],
+			['Current base', 'Working and renting in District 7'],
+			['Hometown', 'Long An, now Tây Ninh'],
+			['Entertainment', 'Light novels, isekai, Genshin, and TFT'],
+			['Favorite team', 'T1 — Keria is the bias'],
+			['Lifestyle', 'Homebody, computer enthusiast, and careful spender'],
+			['Pets', 'Not really a pet person'],
+			['Spiritual side', 'Year of the Cat 🐱; compatible with Monkey 🐒, Tiger 🐯, Snake 🐍, Horse 🐴, Pig 🐷, Dragon 🐉, and Dog 🐶'],
+			['Private note', 'A little naughty, with a particular fondness for beautiful feet']
 		],
 		closingEyebrow: 'Closing statement',
-		closingTitle: 'The honest version.',
+		closingTitle: "Let's connect and learn more.",
 		closingBody:
-			'I am not a perfect product. I am a maintained system: observable, sometimes stubborn, generally reliable, and much better with the right person reviewing the roadmap.'
+			'Thank you for making it this far. A profile can only say so much — if something here feels compatible, let us connect and get to know each other.'
 	}
 };
