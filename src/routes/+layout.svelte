@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import favicon from '$lib/assets/favicon.svg';
@@ -17,21 +17,21 @@
 
 	let { children } = $props();
 
-	const navItems = [
-		{ href: resolve('/'), labelKey: 'home', routeId: '/' },
-		{ href: resolve('/jd/'), labelKey: 'jd', routeId: '/jd' },
-		{ href: resolve('/cv/'), labelKey: 'cv', routeId: '/cv' }
-	] as const;
+	const navItems = /** @type {const} */ ([
+		{ path: '/', labelKey: 'home', routeId: '/' },
+		{ path: '/jd/', labelKey: 'jd', routeId: '/jd' },
+		{ path: '/cv/', labelKey: 'cv', routeId: '/cv' }
+	]);
 
-	const themeIcons = {
+	const themeIcons = /** @type {const} */ ({
 		light: '☀️',
 		dark: '🌙'
-	} as const;
+	});
 
-	const localeLabels = {
+	const localeLabels = /** @type {const} */ ({
 		vi: 'VI',
 		en: 'EN'
-	} as const;
+	});
 
 	onMount(initializePreferences);
 </script>
@@ -64,9 +64,9 @@
 
 	<div class="header-actions">
 		<nav aria-label={$copy.layout.primaryNavAria}>
-			{#each navItems as item (item.href)}
+			{#each navItems as item (item.path)}
 				<a
-					href={item.href}
+					href={resolve(item.path)}
 					class:active={page.route.id === item.routeId}
 					aria-current={page.route.id === item.routeId ? 'page' : undefined}
 				>

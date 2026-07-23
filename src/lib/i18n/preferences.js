@@ -7,23 +7,29 @@ import {
 	isTheme,
 	localeOptions,
 	messages,
-	themeOptions,
-	type Locale,
-	type Theme
-} from './index';
+	themeOptions
+} from './index.js';
+
+/** @typedef {import('./types.js').Locale} Locale */
+/** @typedef {import('./types.js').Theme} Theme */
 
 const localeStorageKey = 'dating-locale';
 const themeStorageKey = 'dating-theme';
 
 export { localeOptions, themeOptions };
 
-export const locale = writable<Locale>(defaultLocale);
-export const theme = writable<Theme>(defaultTheme);
+/** @type {import('svelte/store').Writable<Locale>} */
+export const locale = writable(defaultLocale);
+
+/** @type {import('svelte/store').Writable<Theme>} */
+export const theme = writable(defaultTheme);
+
 export const copy = derived(locale, ($locale) => messages[$locale]);
 
 let preferencesStarted = false;
 
-function readStoredLocale(): Locale {
+/** @returns {Locale} */
+function readStoredLocale() {
 	if (!browser) return defaultLocale;
 
 	const storedLocale = readStorage(localeStorageKey);
@@ -32,14 +38,16 @@ function readStoredLocale(): Locale {
 	return defaultLocale;
 }
 
-function readStoredTheme(): Theme {
+/** @returns {Theme} */
+function readStoredTheme() {
 	if (!browser) return defaultTheme;
 
 	const storedTheme = readStorage(themeStorageKey);
 	return isTheme(storedTheme) ? storedTheme : defaultTheme;
 }
 
-function readStorage(key: string) {
+/** @param {string} key */
+function readStorage(key) {
 	try {
 		return localStorage.getItem(key);
 	} catch {
@@ -47,7 +55,11 @@ function readStorage(key: string) {
 	}
 }
 
-function writeStorage(key: string, value: string) {
+/**
+ * @param {string} key
+ * @param {string} value
+ */
+function writeStorage(key, value) {
 	try {
 		localStorage.setItem(key, value);
 	} catch {
@@ -55,12 +67,14 @@ function writeStorage(key: string, value: string) {
 	}
 }
 
-function applyLocale(nextLocale: Locale) {
+/** @param {Locale} nextLocale */
+function applyLocale(nextLocale) {
 	document.documentElement.lang = nextLocale;
 	writeStorage(localeStorageKey, nextLocale);
 }
 
-function applyTheme(nextTheme: Theme) {
+/** @param {Theme} nextTheme */
+function applyTheme(nextTheme) {
 	document.documentElement.dataset.theme = nextTheme;
 	document.documentElement.style.colorScheme = nextTheme;
 	writeStorage(themeStorageKey, nextTheme);
@@ -77,10 +91,12 @@ export function initializePreferences() {
 	theme.subscribe(applyTheme);
 }
 
-export function setLocale(nextLocale: Locale) {
+/** @param {Locale} nextLocale */
+export function setLocale(nextLocale) {
 	locale.set(nextLocale);
 }
 
-export function setTheme(nextTheme: Theme) {
+/** @param {Theme} nextTheme */
+export function setTheme(nextTheme) {
 	theme.set(nextTheme);
 }

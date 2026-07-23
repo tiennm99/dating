@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { copy } from '$lib/i18n/preferences';
 </script>
 

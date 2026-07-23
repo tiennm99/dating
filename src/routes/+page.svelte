@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { resolve } from '$app/paths';
 	import heroImage from '$lib/assets/generated/dating-application-hero-background.webp';
 	import { copy } from '$lib/i18n/preferences';

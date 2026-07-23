@@ -1,6 +1,5 @@
-import type { SiteCopy } from './types';
-
-export const vi: SiteCopy = {
+/** @type {import('./types.js').SiteCopy} */
+export const vi = {
 	layout: {
 		skipLink: 'Bỏ qua đến nội dung',
 		brand: 'Mô tả & hồ sơ hẹn hò',
@@ -118,7 +117,10 @@ export const vi: SiteCopy = {
 			['Đội tuyển yêu thích', 'T1 — bias Keria'],
 			['Lối sống', 'Ở nhà, mê máy tính và chi tiêu tiết kiệm'],
 			['Thú cưng', 'Không hợp lắm'],
-			['Tâm linh', 'Tuổi Mão 🐱; hợp tuổi Thân 🐒, Dần 🐯, Tỵ 🐍, Ngọ 🐴, Hợi 🐷, Thìn 🐉 và Tuất 🐶'],
+			[
+				'Tâm linh',
+				'Tuổi Mão 🐱; hợp tuổi Thân 🐒, Dần 🐯, Tỵ 🐍, Ngọ 🐴, Hợi 🐷, Thìn 🐉 và Tuất 🐶'
+			],
 			['Góc riêng tư', 'Hơi tà răm; có thiện cảm đặc biệt với đôi chân đẹp']
 		],
 		closingEyebrow: 'Lời kết',

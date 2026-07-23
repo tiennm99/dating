@@ -2,12 +2,13 @@ import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-function resolveBase(): '' | `/${string}` {
+/** @returns {'' | `/${string}`} */
+function resolveBase() {
 	const configuredBase =
 		process.env.BASE_PATH ?? (process.env.BUILD_PROFILE === 'gh' ? '/dating' : '');
 
 	if (configuredBase === '' || configuredBase.startsWith('/')) {
-		return configuredBase as '' | `/${string}`;
+		return /** @type {'' | `/${string}`} */ (configuredBase);
 	}
 
 	throw new Error('BASE_PATH must be empty or start with "/"');

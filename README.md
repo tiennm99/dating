@@ -21,7 +21,7 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 - SvelteKit 2
 - Svelte 5
-- TypeScript
+- JavaScript with JSDoc type checking
 - `@sveltejs/adapter-static`
 - GitHub Pages
 

@@ -1,6 +1,5 @@
-import type { SiteCopy } from './types';
-
-export const en: SiteCopy = {
+/** @type {import('./types.js').SiteCopy} */
+export const en = {
 	layout: {
 		skipLink: 'Skip to content',
 		brand: 'Dating JD & CV',
@@ -119,7 +118,10 @@ export const en: SiteCopy = {
 			['Favorite team', 'T1 — Keria is the bias'],
 			['Lifestyle', 'Homebody, computer enthusiast, and careful spender'],
 			['Pets', 'Not really a pet person'],
-			['Spiritual side', 'Year of the Cat 🐱; compatible with Monkey 🐒, Tiger 🐯, Snake 🐍, Horse 🐴, Pig 🐷, Dragon 🐉, and Dog 🐶'],
+			[
+				'Spiritual side',
+				'Year of the Cat 🐱; compatible with Monkey 🐒, Tiger 🐯, Snake 🐍, Horse 🐴, Pig 🐷, Dragon 🐉, and Dog 🐶'
+			],
 			['Private note', 'A little naughty, with a particular fondness for beautiful feet']
 		],
 		closingEyebrow: 'Closing statement',
