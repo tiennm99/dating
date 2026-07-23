@@ -77,51 +77,68 @@ export const copy = {
 	cv: {
 		metaTitle: 'Hồ sơ cá nhân | Tiến Nguyễn Minh',
 		metaDescription:
-			'Hồ sơ hẹn hò chân thành của một anh dev hướng nội, mê máy tính, light novel và game.',
+			'Hồ sơ hẹn hò chân thành của một anh dev hơi cù lần: nghiện máy tính, light novel, Genshin, TFT và đang tìm một mối quan hệ lâu dài.',
 		heroEyebrow: 'Hồ sơ ứng viên',
 		title: 'Tiến Nguyễn Minh',
-		lead: 'Một anh dev hơi cù lần, mê máy tính, sống tiết kiệm và đang tìm một người đủ hợp để kéo mình ra khỏi phòng — hoặc cùng ở nhà chơi game cũng được.',
+		lead: 'Một anh dev hơi cù lần, thiếu kĩ năng sống. Hay ở nhà, nghiện máy tính — cũng muốn đi chơi đấy, nhưng lười đi một mình. Đang tìm một mối quan hệ lâu dài, nghiêm túc hơn cả cách mình cày event Genshin.',
 		summaryAria: 'Tóm tắt ứng viên',
 		strengthsEyebrow: 'Chân dung nhanh',
 		strengthsTitle: 'Có gì trong hồ sơ này?',
 		strengths: [
 			{
 				title: 'Hướng nội có nghề',
-				body: 'Là dev, khá nghiện máy tính và thường chọn ở nhà. Vẫn muốn đi đây đi đó, chỉ là hơi lười nếu phải đi một mình.'
+				body: 'Tốt nghiệp Đại học Bờ Kênh TPHCM, hiện là công nhân đánh máy thuê tại Xí nghiệp gêm Vê Nờ Gờ. Nói cách khác: một anh dev khá nghiện máy tính và thường chọn ở nhà.'
 			},
 			{
 				title: 'Wibu nửa mùa',
-				body: 'Thích light novel hơn manga và anime; isekai là thể loại chân ái. Thời gian rảnh còn dành cho Genshin, TFT và cổ vũ T1 — đặc biệt là Keria.'
+				body: 'Thích light novel hơn manga và anime; isekai là thể loại chân ái. Thời gian rảnh dành cho đọc truyện, xem phim, chơi Genshin, TFT, code vài thứ thú vị, và cổ vũ T1 — nhất là Keria.'
+			},
+			{
+				title: 'Playlist đủ mọi loại mood',
+				body: 'Rap mainstream, nhạc tâm trạng, nhạc suy, nhạc wibu, nhạc Trung… Tâm trạng nào cũng có bài lót sẵn, kể cả những tâm trạng chưa đặt tên.'
 			},
 			{
 				title: 'Sống đơn giản',
-				body: 'Gia cảnh bình thường, quen chi tiêu tiết kiệm và không chạy theo lối sống hào nhoáng. Cũng xin nói trước là không thích thú cưng.'
+				body: 'Gia cảnh bình thường, lối sống tiết kiệm, không chạy theo hào nhoáng. Không thuốc lá, thi thoảng rượu bia cho đúng thủ tục xã giao. Và xin nói trước: không thích thú cưng.'
+			},
+			{
+				title: 'Nghiêm túc với chuyện lâu dài',
+				body: 'Từng trải qua một mối tình hơn 3 năm, chia tay cũng đã hơn 3 năm — đủ lâu để lành và sẵn sàng cho một mối quan hệ mới. Chưa lập gia đình, chưa có con.'
 			},
 			{
 				title: 'Thành thật từ đầu',
-				body: 'Hơi thiếu kỹ năng sống, có chút tâm linh và cũng hơi… tà răm. Điểm yếu đặc biệt: đôi chân đẹp.'
+				body: 'Rất thích quan điểm của Phật giáo nhưng chưa/không quy y. Sống hơi tâm linh, và cũng hơi… tà răm — fetish là chân 🌚.'
 			}
 		],
 		factsEyebrow: 'Thông tin nhanh',
 		factsTitle: 'Để đỡ mất công đoán.',
 		// The first three facts feed the CV hero summary grid.
 		facts: [
-			['Nghề nghiệp', 'Lập trình viên'],
+			['Tuổi', '26 — sinh năm 1999, tuổi con 🐈'],
+			['Tìm kiếm', 'Mối quan hệ lâu dài'],
+			['Khu vực hẹn hò', 'TPHCM hoặc Long An cũ'],
+			['Giới tính', 'Nam'],
+			['Chiều cao', '162cm — số đo thật, không cộng dép'],
+			['Cân nặng', '65kg, hơi béo — đang "thử" giảm cân'],
+			['Quê quán', 'Long An cũ, nay là Tây Ninh'],
 			['Đang ở', 'Đi làm và thuê trọ tại Quận 7'],
-			['Quê quán', 'Long An, nay là Tây Ninh'],
-			['Gu giải trí', 'Light novel, isekai, Genshin và TFT'],
-			['Đội tuyển yêu thích', 'T1 — bias Keria'],
-			['Lối sống', 'Ở nhà, mê máy tính và chi tiêu tiết kiệm'],
-			['Thú cưng', 'Không hợp lắm'],
+			['Ngôn ngữ', 'Tiếng Việt (tất nhiên) và một chút tiếng Anh'],
+			['Học vấn', 'Bằng đại học — Đại học Bờ Kênh TPHCM'],
+			['Công việc', 'Công nhân đánh máy thuê tại Xí nghiệp gêm Vê Nờ Gờ'],
 			[
-				'Tâm linh',
-				'Tuổi Mão 🐱; hợp tuổi Thân 🐒, Dần 🐯, Tỵ 🐍, Ngọ 🐴, Hợi 🐷, Thìn 🐉 và Tuất 🐶'
+				'Tình sử',
+				'Một mối tình hơn 3 năm; chia tay cũng đã hơn 3 năm, sẵn sàng cho mối quan hệ mới'
 			],
-			['Góc riêng tư', 'Hơi tà răm; có thiện cảm đặc biệt với đôi chân đẹp']
+			['Gia đình', 'Chưa lập gia đình, chưa có con'],
+			['Thói quen', 'Không thuốc lá, thi thoảng rượu bia'],
+			['Đức tin', 'Rất thích quan điểm của Phật giáo nhưng chưa/không quy y'],
+			['Thú cưng', 'Không thích — xin thành thật từ đầu'],
+			['Tâm linh', 'Tuổi 🐈; tìm các tuổi 🐒 🐅 🐍 🐎 🐖 hoặc 🐉 🐕'],
+			['Góc riêng tư', 'Hơi… tà răm. Fetish là chân 🌚']
 		],
 		closingEyebrow: 'Lời kết',
-		closingTitle: 'Muốn biết thêm thì mình kết nối nhé.',
+		closingTitle: 'Kết nối để tìm hiểu thêm nhé.',
 		closingBody:
-			'Cảm ơn bạn đã ghé đến tận đây. Hồ sơ chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ kết nối để mình tìm hiểu nhau thêm nhé.'
+			'Cảm ơn vì đã đến. Hồ sơ chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ kết nối để mình tìm hiểu nhau thêm nhé.'
 	}
 };
