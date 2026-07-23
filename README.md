@@ -4,9 +4,9 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 ## Pages
 
-- `/` home
-- `/jd/` future lover job description
-- `/cv/` candidate CV
+- `/` home — `index.html`
+- `/jd/` future lover job description — `jd/index.html`
+- `/cv/` candidate CV — `cv/index.html`
 
 ## Features
 
@@ -18,48 +18,23 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 ## Tech
 
-- SvelteKit 2
-- Svelte 5
-- JavaScript with JSDoc type checking
-- `@sveltejs/adapter-static`
+- Plain HTML, CSS, and JavaScript — no framework, no build step
+- Shared styles in `assets/styles.css`, theme toggle in `assets/theme-switch.js`
+- All links are relative, so the site works at any base path
 - GitHub Pages
 
 ## Developing
 
-Install dependencies:
+No install needed. Open `index.html` directly, or serve the folder for correct
+`/jd/` and `/cv/` routing, e.g.:
 
 ```sh
-pnpm install
+python -m http.server 8000
 ```
 
-Run locally:
+Then visit `http://localhost:8000/`.
 
-```sh
-pnpm run dev
-```
+## Deploying
 
-## Building
-
-Local static build:
-
-```sh
-pnpm run build
-```
-
-GitHub Pages build (CI sets `BASE_PATH` from the repository name; to reproduce locally):
-
-```sh
-# Git Bash / Linux / macOS
-BASE_PATH=/dating pnpm run build
-```
-
-```powershell
-# Windows PowerShell
-$env:BASE_PATH = '/dating'; pnpm run build
-```
-
-Preview:
-
-```sh
-pnpm run preview
-```
+Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which uploads
+the site files as-is to GitHub Pages.
