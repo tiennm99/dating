@@ -6,7 +6,7 @@
 		<title>Tiến Nguyễn Minh | Mô tả &amp; hồ sơ hẹn hò</title>
 		<meta
 			name="description"
-			content="Mô tả hẹn hò và hồ sơ cá nhân ấm áp, dí dỏm của Tiến Nguyễn Minh."
+			content="Mô tả công việc cho vị trí người yêu tương lai và hồ sơ hẹn hò dí dỏm của Tiến Nguyễn Minh — tất cả trong một trang."
 		/>
 		<link rel="icon" href="assets/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +21,7 @@
 		<meta property="og:title" content="Tiến Nguyễn Minh | Mô tả &amp; hồ sơ hẹn hò" />
 		<meta
 			property="og:description"
-			content="Mô tả hẹn hò và hồ sơ cá nhân ấm áp, dí dỏm của Tiến Nguyễn Minh."
+			content="Mô tả công việc cho vị trí người yêu tương lai và hồ sơ hẹn hò dí dỏm của Tiến Nguyễn Minh — tất cả trong một trang."
 		/>
 		<meta
 			property="og:image"
@@ -62,8 +62,8 @@
 		<header class="site-shell site-header">
 			<a
 				class="brand-mark"
-				href="./"
-				aria-label="Trang chủ mô tả và hồ sơ hẹn hò của Tiến Nguyễn Minh"
+				href="#home"
+				aria-label="Về đầu trang mô tả và hồ sơ hẹn hò của Tiến Nguyễn Minh"
 			>
 				<span class="brand-seal">TN</span>
 				<span>Mô tả &amp; hồ sơ hẹn hò</span>
@@ -71,9 +71,9 @@
 
 			<div class="header-actions">
 				<nav aria-label="Điều hướng chính">
-					<a href="./" class="active" aria-current="page">Trang chủ</a>
-					<a href="jd/">Mô tả công việc</a>
-					<a href="cv/">Hồ sơ cá nhân</a>
+					<a href="#home">Trang chủ</a>
+					<a href="#jd">Mô tả công việc</a>
+					<a href="#cv">Hồ sơ cá nhân</a>
 				</nav>
 
 				<div class="preference-controls">
@@ -102,7 +102,8 @@
 		</header>
 
 		<main id="content">
-			<section class="home-hero">
+			<!-- ============ Trang chủ ============ -->
+			<section class="home-hero" id="home">
 				<div class="site-shell hero-copy">
 					<p class="eyebrow">Vị trí mở / bạn đồng hành dài hạn</p>
 					<h1>Tiến Nguyễn Minh</h1>
@@ -111,8 +112,8 @@
 						cá nhân, vừa là lời mời nghiêm túc để cùng xây điều tử tế.
 					</p>
 					<div class="button-row">
-						<a class="button" href="jd/">Đọc mô tả công việc</a>
-						<a class="button secondary" href="cv/">Xem hồ sơ cá nhân</a>
+						<a class="button" href="#jd">Đọc mô tả công việc</a>
+						<a class="button secondary" href="#cv">Xem hồ sơ cá nhân</a>
 					</div>
 				</div>
 			</section>
@@ -139,6 +140,264 @@
 						</p>
 					</article>
 				</div>
+			</section>
+
+			<!-- ============ Mô tả công việc ============ -->
+			<section class="site-shell page-section jd-hero" id="jd" aria-labelledby="jd-title">
+				<p class="eyebrow">Mô tả công việc</p>
+				<h2 class="page-title" id="jd-title">Người yêu tương lai</h2>
+				<p class="lead">
+					Đây là một vị trí dài hạn, làm việc trực tiếp với con người. Gói đãi ngộ chủ yếu gồm sự
+					chú ý, lòng chung thủy, những bữa ăn chung, chuyện cười riêng, và một người biết thử lại
+					sau sai lầm.
+				</p>
+				<div class="meta-grid" role="group" aria-label="Tóm tắt vị trí">
+					<div><span>Loại hình</span>Toàn thời gian bằng trái tim, lịch linh hoạt</div>
+					<div><span>Địa điểm</span>Chủ yếu ở Trái Đất, đôi khi tại Sài Gòn</div>
+					<div><span>Ngày bắt đầu</span>Khi niềm tin qua vòng xem xét</div>
+				</div>
+			</section>
+
+			<section class="site-shell page-section section-grid" aria-labelledby="benefits-title">
+				<div>
+					<p class="eyebrow">Quyền lợi</p>
+					<h2 id="benefits-title">Bạn sẽ nhận được.</h2>
+				</div>
+				<div class="panel-list">
+					<article class="panel">
+						<p>Ưu tiên hỗ trợ trong những ngày khó, ý tưởng lạ, và các buổi tối yên tĩnh.</p>
+					</article>
+					<article class="panel">
+						<p>Sự thành thật đều đặn, giao tiếp rõ ràng, và báo lỗi không đổ lỗi.</p>
+					</article>
+					<article class="panel">
+						<p>
+							Một người có thể gỡ lỗi hệ thống đang vận hành và cũng nghĩ hơi nhiều chuyện ăn gì
+							tối nay.
+						</p>
+					</article>
+					<article class="panel">
+						<p>Lộ trình phát triển dài hạn: khỏe hơn, đi nhiều hơn, và có nhiều câu chuyện hơn.</p>
+					</article>
+				</div>
+			</section>
+
+			<section
+				class="site-shell page-section section-grid"
+				aria-labelledby="responsibilities-title"
+			>
+				<div>
+					<p class="eyebrow">Trách nhiệm</p>
+					<h2 id="responsibilities-title">Điều cả hai cùng bảo vệ.</h2>
+				</div>
+				<div class="panel-list">
+					<article class="panel strong">
+						<ul>
+							<li>Xây niềm tin bằng lời nói thẳng thắn và những hành động nhỏ lặp lại.</li>
+							<li>
+								Tôn trọng thời gian riêng, tham vọng nghề nghiệp, gia đình, bạn bè, và các nghi
+								thức cá nhân.
+							</li>
+							<li>Mang theo sự tò mò, lòng tử tế, và thiện chí sửa chữa sau mâu thuẫn.</li>
+							<li>
+								Cùng duy trì một đời sống nơi cả hai được nghiêm túc và ngớ ngẩn đúng lúc.
+							</li>
+						</ul>
+					</article>
+				</div>
+			</section>
+
+			<section class="site-shell page-section section-grid" aria-labelledby="process-title">
+				<div>
+					<p class="eyebrow">Điểm cộng</p>
+					<h2 id="process-title">Điểm cộng thì vui, không có cũng chẳng sao.</h2>
+				</div>
+				<div class="panel-list">
+					<article class="panel">
+						<ul>
+							<li>
+								Thích đồ ăn, đi bộ, trò chơi, phim, hoặc học những thứ lạ không vì hạn chót nào
+								cả.
+							</li>
+							<li>
+								Có thể cười với một bản nhại công sở mà không biến tình yêu thành OKR xét theo
+								quý.
+							</li>
+							<li>Tin rằng tình cảm chạy tốt hơn nhờ kiên nhẫn, không phải trò đoán ý.</li>
+						</ul>
+					</article>
+					<article class="panel">
+						<h3>Ghi chú tuyển chọn</h3>
+						<p>
+							Không có bài kiểm tra áp lực. Không có vòng giải đố ẩn. Ứng viên mạnh là người vẫn
+							tử tế khi mệt, nói thẳng khi rối, và sẵn sàng chọn nhau trong những khoảnh khắc nhỏ
+							rất đời thường.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<!-- ============ Hồ sơ cá nhân ============ -->
+			<section class="site-shell page-section cv-hero" id="cv" aria-labelledby="cv-title">
+				<p class="eyebrow">Hồ sơ ứng viên</p>
+				<h2 class="page-title" id="cv-title">Tiến Nguyễn Minh</h2>
+				<p class="lead">
+					Một anh dev hơi cù lần, thiếu kĩ năng sống. Hay ở nhà, nghiện máy tính — cũng muốn đi
+					chơi đấy, nhưng lười đi một mình. Đang tìm một mối quan hệ lâu dài, nghiêm túc hơn cả
+					cách mình cày event Genshin.
+				</p>
+				<div class="meta-grid" role="group" aria-label="Tóm tắt ứng viên">
+					<div><span>Tuổi</span>26 — sinh năm 1999, tuổi con 🐈</div>
+					<div><span>Tìm kiếm</span>Mối quan hệ lâu dài</div>
+					<div><span>Khu vực hẹn hò</span>TPHCM hoặc Long An cũ</div>
+				</div>
+			</section>
+
+			<section class="site-shell page-section section-grid" aria-labelledby="strengths-title">
+				<div>
+					<p class="eyebrow">Chân dung nhanh</p>
+					<h2 id="strengths-title">Có gì trong hồ sơ này?</h2>
+				</div>
+				<div class="panel-list">
+					<article class="panel">
+						<h3>Hướng nội có nghề</h3>
+						<p>
+							Tốt nghiệp Đại học Bờ Kênh TPHCM, hiện là công nhân đánh máy thuê tại Xí nghiệp gêm
+							Vê Nờ Gờ. Nói cách khác: một anh dev khá nghiện máy tính và thường chọn ở nhà.
+						</p>
+					</article>
+					<article class="panel">
+						<h3>Wibu nửa mùa</h3>
+						<p>
+							Thích light novel hơn manga và anime; isekai là thể loại chân ái. Thời gian rảnh
+							dành cho đọc truyện, xem phim, chơi Genshin, TFT, code vài thứ thú vị, và cổ vũ T1 —
+							nhất là Keria.
+						</p>
+					</article>
+					<article class="panel">
+						<h3>Playlist đủ mọi loại mood</h3>
+						<p>
+							Rap mainstream, nhạc tâm trạng, nhạc suy, nhạc wibu, nhạc Trung… Tâm trạng nào cũng
+							có bài lót sẵn, kể cả những tâm trạng chưa đặt tên.
+						</p>
+					</article>
+					<article class="panel">
+						<h3>Sống đơn giản</h3>
+						<p>
+							Gia cảnh bình thường, lối sống tiết kiệm, không chạy theo hào nhoáng. Không thuốc
+							lá, thi thoảng rượu bia cho đúng thủ tục xã giao. Và xin nói trước: không thích thú
+							cưng.
+						</p>
+					</article>
+					<article class="panel">
+						<h3>Nghiêm túc với chuyện lâu dài</h3>
+						<p>
+							Từng trải qua một mối tình hơn 3 năm, chia tay cũng đã hơn 3 năm — đủ lâu để lành và
+							sẵn sàng cho một mối quan hệ mới. Chưa lập gia đình, chưa có con.
+						</p>
+					</article>
+					<article class="panel">
+						<h3>Thành thật từ đầu</h3>
+						<p>
+							Rất thích quan điểm của Phật giáo nhưng chưa/không quy y. Sống hơi tâm linh, và
+							cũng hơi… tà răm — fetish là chân 🌚.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="site-shell page-section section-grid" aria-labelledby="facts-title">
+				<div>
+					<p class="eyebrow">Thông tin nhanh</p>
+					<h2 id="facts-title">Để đỡ mất công đoán.</h2>
+				</div>
+				<dl class="facts-list">
+					<div>
+						<dt>Tuổi</dt>
+						<dd>26 — sinh năm 1999, tuổi con 🐈</dd>
+					</div>
+					<div>
+						<dt>Tìm kiếm</dt>
+						<dd>Mối quan hệ lâu dài</dd>
+					</div>
+					<div>
+						<dt>Khu vực hẹn hò</dt>
+						<dd>TPHCM hoặc Long An cũ</dd>
+					</div>
+					<div>
+						<dt>Giới tính</dt>
+						<dd>Nam</dd>
+					</div>
+					<div>
+						<dt>Chiều cao</dt>
+						<dd>162cm — số đo thật, không cộng dép</dd>
+					</div>
+					<div>
+						<dt>Cân nặng</dt>
+						<dd>65kg, hơi béo — đang "thử" giảm cân</dd>
+					</div>
+					<div>
+						<dt>Quê quán</dt>
+						<dd>Long An cũ, nay là Tây Ninh</dd>
+					</div>
+					<div>
+						<dt>Đang ở</dt>
+						<dd>Đi làm và thuê trọ tại Quận 7</dd>
+					</div>
+					<div>
+						<dt>Ngôn ngữ</dt>
+						<dd>Tiếng Việt (tất nhiên) và một chút tiếng Anh</dd>
+					</div>
+					<div>
+						<dt>Học vấn</dt>
+						<dd>Bằng đại học — Đại học Bờ Kênh TPHCM</dd>
+					</div>
+					<div>
+						<dt>Công việc</dt>
+						<dd>Công nhân đánh máy thuê tại Xí nghiệp gêm Vê Nờ Gờ</dd>
+					</div>
+					<div>
+						<dt>Tình sử</dt>
+						<dd>Một mối tình hơn 3 năm; chia tay cũng đã hơn 3 năm, sẵn sàng cho mối quan hệ mới</dd>
+					</div>
+					<div>
+						<dt>Gia đình</dt>
+						<dd>Chưa lập gia đình, chưa có con</dd>
+					</div>
+					<div>
+						<dt>Thói quen</dt>
+						<dd>Không thuốc lá, thi thoảng rượu bia</dd>
+					</div>
+					<div>
+						<dt>Đức tin</dt>
+						<dd>Rất thích quan điểm của Phật giáo nhưng chưa/không quy y</dd>
+					</div>
+					<div>
+						<dt>Thú cưng</dt>
+						<dd>Không thích — xin thành thật từ đầu</dd>
+					</div>
+					<div>
+						<dt>Tâm linh</dt>
+						<dd>Tuổi 🐈; tìm các tuổi 🐒 🐅 🐍 🐎 🐖 hoặc 🐉 🐕</dd>
+					</div>
+					<div>
+						<dt>Góc riêng tư</dt>
+						<dd>Hơi… tà răm. Fetish là chân 🌚</dd>
+					</div>
+				</dl>
+			</section>
+
+			<section class="site-shell page-section section-grid" aria-labelledby="closing-title">
+				<div>
+					<p class="eyebrow">Lời kết</p>
+					<h2 id="closing-title">Kết nối để tìm hiểu thêm nhé.</h2>
+				</div>
+				<article class="panel strong">
+					<p>
+						Cảm ơn vì đã đến. Hồ sơ chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ kết
+						nối để mình tìm hiểu nhau thêm nhé.
+					</p>
+				</article>
 			</section>
 		</main>
 	</body>

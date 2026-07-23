@@ -2,7 +2,7 @@
 
 ## Platform
 
-GitHub Pages.
+GitHub Pages — classic mode (deploy from branch), no Actions workflow.
 
 ## Production URL
 
@@ -10,18 +10,18 @@ Expected URL: `https://tiennm99.github.io/dating/`.
 
 ## Build
 
-None. The site is plain HTML/CSS/JS served as-is. All internal links and asset
-references are relative, so no base-path configuration is needed.
+None. The site is a single `index.html` at the repo root plus `assets/`,
+served as-is.
 
-## Workflow
+## Configuration
 
-`.github/workflows/deploy-pages.yml` runs on push to `main`: it copies the site
-files (`index.html`, `jd/`, `cv/`, `assets/`, `robots.txt`) into `_site/`,
-uploads that folder, then deploys with GitHub Pages Actions. `docs/` and
-`plans/` are intentionally left out of the published artifact.
+- Pages source: branch `main`, folder `/ (root)`.
+- `.nojekyll` at the root disables Jekyll processing.
+- Pushing to `main` publishes automatically; no secrets, no CI.
 
 ## Notes
 
+- Classic Pages serves the whole branch root, so `docs/` and `plans/` markdown
+  files are also reachable by URL. The repo is public, so this exposes nothing
+  new.
 - Static files only. No backend, no form service.
-- Pages source should be GitHub Actions.
-- No secrets required.

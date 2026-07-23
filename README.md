@@ -2,11 +2,14 @@
 
 Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
-## Pages
+## Structure
 
-- `/` home — `index.html`
-- `/jd/` future lover job description — `jd/index.html`
-- `/cv/` candidate CV — `cv/index.html`
+Single-page site: `index.html` at the repo root holds all three parts,
+navigable via anchors:
+
+- `#home` — intro hero
+- `#jd` — future lover job description
+- `#cv` — candidate CV
 
 ## Features
 
@@ -20,13 +23,11 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 - Plain HTML, CSS, and JavaScript — no framework, no build step
 - Shared styles in `assets/styles.css`, theme toggle in `assets/theme-switch.js`
-- All links are relative, so the site works at any base path
-- GitHub Pages
+- GitHub Pages (classic, deploy from branch)
 
 ## Developing
 
-No install needed. Open `index.html` directly, or serve the folder for correct
-`/jd/` and `/cv/` routing, e.g.:
+No install needed. Open `index.html` directly, or serve the folder:
 
 ```sh
 python -m http.server 8000
@@ -36,5 +37,5 @@ Then visit `http://localhost:8000/`.
 
 ## Deploying
 
-Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which uploads
-the site files as-is to GitHub Pages.
+Classic GitHub Pages serves the `main` branch root directly — pushing to `main`
+publishes the site. `.nojekyll` disables Jekyll processing.

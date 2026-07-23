@@ -341,6 +341,19 @@ nav a.active {
 
 /* ---------- Shared content blocks ---------- */
 
+/* Big section titles for the JD and CV blocks on the single-page layout:
+   smaller than the home h1 but clearly above regular h2 headings. */
+.page-title {
+	max-width: 12ch;
+	margin: 0;
+	font-size: clamp(2.8rem, 8vw, 6.4rem);
+}
+
+/* Keep anchor targets clear of the sticky header when navigating with #hash links. */
+section[id] {
+	scroll-margin-top: 5.5rem;
+}
+
 .eyebrow {
 	margin: 0 0 1rem;
 	/* --primary fails WCAG AA (4.46:1) on the light background at this size; --primary-strong passes in both themes. */
