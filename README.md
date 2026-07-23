@@ -12,10 +12,9 @@ Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
 
 - Light theme: white and blue
 - Dark theme: black and pink
-- Compact emoji theme switch and VI/EN language switch
-- English and full Vietnamese copy switch
-- Vietnamese is the default locale
-- Static i18n and theme preferences persisted in the browser
+- Compact emoji theme switch
+- Vietnamese-only copy
+- Theme preference persisted in the browser
 
 ## Tech
 
@@ -47,10 +46,16 @@ Local static build:
 pnpm run build
 ```
 
-GitHub Pages build:
+GitHub Pages build (CI sets `BASE_PATH` from the repository name; to reproduce locally):
 
 ```sh
-pnpm run build:gh
+# Git Bash / Linux / macOS
+BASE_PATH=/dating pnpm run build
+```
+
+```powershell
+# Windows PowerShell
+$env:BASE_PATH = '/dating'; pnpm run build
 ```
 
 Preview:

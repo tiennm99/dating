@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&display=swap');
+/* Fonts are loaded via <link> tags in src/app.html so the fetch is not serialized behind this stylesheet. */
 
 :root {
 	font-family: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
@@ -27,7 +27,7 @@
 	--hero-accent: #9dccff;
 	--hero-border: rgba(255, 255, 255, 0.72);
 	--hero-overlay-start: rgba(5, 33, 72, 0.86);
-	--hero-overlay-mid: rgba(5, 64, 132, 0.5);
+	--hero-overlay-mid: rgba(5, 64, 132, 0.62);
 	--hero-overlay-end: rgba(5, 64, 132, 0.08);
 	--paper: var(--surface);
 	--mist: var(--surface-muted);
@@ -59,7 +59,7 @@
 	--hero-accent: #ff9bd0;
 	--hero-border: rgba(255, 245, 251, 0.72);
 	--hero-overlay-start: rgba(5, 5, 7, 0.92);
-	--hero-overlay-mid: rgba(52, 10, 32, 0.62);
+	--hero-overlay-mid: rgba(52, 10, 32, 0.72);
 	--hero-overlay-end: rgba(255, 79, 163, 0.1);
 }
 
@@ -114,7 +114,8 @@ h2,
 h3 {
 	font-family: 'Fraunces', Georgia, serif;
 	letter-spacing: 0;
-	line-height: 0.98;
+	/* Sub-1 line-height makes stacked Vietnamese diacritics collide on wrapped headings. */
+	line-height: 1.08;
 }
 
 h1 {

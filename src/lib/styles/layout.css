@@ -152,12 +152,6 @@ nav a.active {
 		'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Twemoji Mozilla', sans-serif;
 }
 
-.locale-code {
-	font-size: 0.78rem;
-	font-weight: 800;
-	letter-spacing: 0.03em;
-}
-
 @media (max-width: 720px) {
 	.site-header {
 		align-items: flex-start;

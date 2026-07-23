@@ -1,6 +1,7 @@
 .eyebrow {
 	margin: 0 0 1rem;
-	color: var(--primary);
+	/* --primary fails WCAG AA (4.46:1) on the light background at this size; --primary-strong passes in both themes. */
+	color: var(--primary-strong);
 	font-size: 0.78rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;

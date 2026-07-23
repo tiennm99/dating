@@ -4,8 +4,8 @@ import { defineConfig } from 'vite';
 
 /** @returns {'' | `/${string}`} */
 function resolveBase() {
-	const configuredBase =
-		process.env.BASE_PATH ?? (process.env.BUILD_PROFILE === 'gh' ? '/dating' : '');
+	// BASE_PATH is the single base-path knob; CI derives it from the repository name.
+	const configuredBase = process.env.BASE_PATH ?? '';
 
 	if (configuredBase === '' || configuredBase.startsWith('/')) {
 		return /** @type {'' | `/${string}`} */ (configuredBase);

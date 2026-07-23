@@ -14,10 +14,16 @@ Expected URL: `https://tiennm99.github.io/dating/`.
 pnpm run build
 ```
 
-For project-page base path:
+For project-page base path, set `BASE_PATH` (the single base-path knob; CI derives it from the repository name):
 
 ```sh
-pnpm run build:gh
+# Git Bash / Linux / macOS
+BASE_PATH=/dating pnpm run build
+```
+
+```powershell
+# Windows PowerShell
+$env:BASE_PATH = '/dating'; pnpm run build
 ```
 
 ## Workflow
