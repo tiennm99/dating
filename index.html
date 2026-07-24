@@ -47,6 +47,13 @@
 
 					root.dataset.theme = theme;
 					root.style.colorScheme = theme;
+
+					// Gate scroll-reveal motion behind JS + IntersectionObserver support,
+					// set pre-paint so revealable content never flashes visible then hides.
+					// Consumed by assets/story.css and assets/story-chrome.css.
+					if ('IntersectionObserver' in window) {
+						root.classList.add('js-ready');
+					}
 				} catch {
 					document.documentElement.dataset.theme = 'light';
 					document.documentElement.style.colorScheme = 'light';
@@ -54,9 +61,15 @@
 			})();
 		</script>
 		<link rel="stylesheet" href="assets/styles.css" />
+		<link rel="stylesheet" href="assets/story.css" />
+		<link rel="stylesheet" href="assets/story-chrome.css" />
 		<script src="assets/theme-switch.js" defer></script>
+		<script src="assets/story.js" defer></script>
+		<script src="assets/story-chrome.js" defer></script>
 	</head>
 	<body>
+		<div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__fill"></span></div>
+
 		<a class="skip-link" href="#content">Bỏ qua đến nội dung</a>
 
 		<header class="site-shell site-header">
@@ -104,27 +117,29 @@
 		<main id="content">
 			<!-- ============ Trang chủ ============ -->
 			<section class="home-hero" id="home">
-				<div class="site-shell hero-copy">
-					<p class="eyebrow">Vị trí mở / bạn đồng hành dài hạn</p>
-					<h1>Tiến Nguyễn Minh</h1>
-					<p class="lead">
+				<div class="site-shell hero-copy" data-reveal-group>
+					<p class="chapter-tag" data-reveal>Chương 1 · Lời mời</p>
+					<p class="eyebrow" data-reveal>Vị trí mở / bạn đồng hành dài hạn</p>
+					<h1 data-reveal>Tiến Nguyễn Minh</h1>
+					<p class="lead" data-reveal>
 						Một bộ hồ sơ nhỏ gửi đến một người yêu tương lai: vừa là mô tả công việc, vừa là hồ sơ
 						cá nhân, vừa là lời mời nghiêm túc để cùng xây điều tử tế.
 					</p>
-					<div class="button-row">
+					<div class="button-row" data-reveal>
 						<a class="button" href="#jd">Đọc mô tả công việc</a>
 						<a class="button secondary" href="#cv">Xem hồ sơ cá nhân</a>
 					</div>
 				</div>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="packet-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="packet-title" data-reveal-group>
+				<div data-reveal>
+					<p class="chapter-tag">Chương 2 · Bộ hồ sơ</p>
 					<p class="eyebrow">Bộ hồ sơ ứng tuyển</p>
 					<h2 id="packet-title">Một trò đùa nghiêm túc, được quản lý nhẹ nhàng.</h2>
 				</div>
 				<div class="panel-list">
-					<article class="panel strong">
+					<article class="panel strong" data-reveal>
 						<h3>Dành cho người yêu tương lai</h3>
 						<p>
 							Mô tả công việc nói rõ quyền lợi của vị trí này: sự ổn định, chú ý, hài hước, chăm
@@ -132,7 +147,7 @@
 							ra mắt.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Dành cho hội đồng tuyển chọn</h3>
 						<p>
 							Hồ sơ cá nhân tóm tắt ứng viên: kỹ sư phần mềm, người nghĩ bằng hệ thống, kiên nhẫn
@@ -143,40 +158,41 @@
 			</section>
 
 			<!-- ============ Mô tả công việc ============ -->
-			<section class="site-shell page-section jd-hero" id="jd" aria-labelledby="jd-title">
-				<p class="eyebrow">Mô tả công việc</p>
-				<h2 class="page-title" id="jd-title">Người yêu tương lai</h2>
-				<p class="lead">
+			<section class="site-shell page-section jd-hero" id="jd" aria-labelledby="jd-title" data-reveal-group>
+				<p class="chapter-tag" data-reveal>Chương 3 · Mô tả công việc</p>
+				<p class="eyebrow" data-reveal>Mô tả công việc</p>
+				<h2 class="page-title" id="jd-title" data-reveal>Người yêu tương lai</h2>
+				<p class="lead" data-reveal>
 					Đây là một vị trí dài hạn, làm việc trực tiếp với con người. Gói đãi ngộ chủ yếu gồm sự
 					chú ý, lòng chung thủy, những bữa ăn chung, chuyện cười riêng, và một người biết thử lại
 					sau sai lầm.
 				</p>
-				<div class="meta-grid" role="group" aria-label="Tóm tắt vị trí">
+				<div class="meta-grid" role="group" aria-label="Tóm tắt vị trí" data-reveal>
 					<div><span>Loại hình</span>Toàn thời gian bằng trái tim, lịch linh hoạt</div>
 					<div><span>Địa điểm</span>Chủ yếu ở Trái Đất, đôi khi tại Sài Gòn</div>
 					<div><span>Ngày bắt đầu</span>Khi niềm tin qua vòng xem xét</div>
 				</div>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="benefits-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="benefits-title" data-reveal-group>
+				<div data-reveal>
 					<p class="eyebrow">Quyền lợi</p>
 					<h2 id="benefits-title">Bạn sẽ nhận được.</h2>
 				</div>
 				<div class="panel-list">
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<p>Ưu tiên hỗ trợ trong những ngày khó, ý tưởng lạ, và các buổi tối yên tĩnh.</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<p>Sự thành thật đều đặn, giao tiếp rõ ràng, và báo lỗi không đổ lỗi.</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<p>
 							Một người có thể gỡ lỗi hệ thống đang vận hành và cũng nghĩ hơi nhiều chuyện ăn gì
 							tối nay.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<p>Lộ trình phát triển dài hạn: khỏe hơn, đi nhiều hơn, và có nhiều câu chuyện hơn.</p>
 					</article>
 				</div>
@@ -185,13 +201,14 @@
 			<section
 				class="site-shell page-section section-grid"
 				aria-labelledby="responsibilities-title"
+				data-reveal-group
 			>
-				<div>
+				<div data-reveal>
 					<p class="eyebrow">Trách nhiệm</p>
 					<h2 id="responsibilities-title">Điều cả hai cùng bảo vệ.</h2>
 				</div>
 				<div class="panel-list">
-					<article class="panel strong">
+					<article class="panel strong" data-reveal>
 						<ul>
 							<li>Xây niềm tin bằng lời nói thẳng thắn và những hành động nhỏ lặp lại.</li>
 							<li>
@@ -207,13 +224,13 @@
 				</div>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="process-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="process-title" data-reveal-group>
+				<div data-reveal>
 					<p class="eyebrow">Điểm cộng</p>
 					<h2 id="process-title">Điểm cộng thì vui, không có cũng chẳng sao.</h2>
 				</div>
 				<div class="panel-list">
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<ul>
 							<li>
 								Thích đồ ăn, đi bộ, trò chơi, phim, hoặc học những thứ lạ không vì hạn chót nào
@@ -226,7 +243,7 @@
 							<li>Tin rằng tình cảm chạy tốt hơn nhờ kiên nhẫn, không phải trò đoán ý.</li>
 						</ul>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Ghi chú tuyển chọn</h3>
 						<p>
 							Không có bài kiểm tra áp lực. Không có vòng giải đố ẩn. Ứng viên mạnh là người vẫn
@@ -238,35 +255,36 @@
 			</section>
 
 			<!-- ============ Hồ sơ cá nhân ============ -->
-			<section class="site-shell page-section cv-hero" id="cv" aria-labelledby="cv-title">
-				<p class="eyebrow">Hồ sơ ứng viên</p>
-				<h2 class="page-title" id="cv-title">Tiến Nguyễn Minh</h2>
-				<p class="lead">
+			<section class="site-shell page-section cv-hero" id="cv" aria-labelledby="cv-title" data-reveal-group>
+				<p class="chapter-tag" data-reveal>Chương 4 · Hồ sơ ứng viên</p>
+				<p class="eyebrow" data-reveal>Hồ sơ ứng viên</p>
+				<h2 class="page-title" id="cv-title" data-reveal>Tiến Nguyễn Minh</h2>
+				<p class="lead" data-reveal>
 					Một anh dev hơi cù lần, thiếu kĩ năng sống. Hay ở nhà, nghiện máy tính — cũng muốn đi
 					chơi đấy, nhưng lười đi một mình. Đang tìm một mối quan hệ lâu dài, nghiêm túc hơn cả
 					cách mình cày event Genshin.
 				</p>
-				<div class="meta-grid" role="group" aria-label="Tóm tắt ứng viên">
+				<div class="meta-grid" role="group" aria-label="Tóm tắt ứng viên" data-reveal>
 					<div><span>Tuổi</span>26 — sinh năm 1999, tuổi con 🐈</div>
 					<div><span>Tìm kiếm</span>Mối quan hệ lâu dài</div>
 					<div><span>Khu vực hẹn hò</span>TPHCM hoặc Long An cũ</div>
 				</div>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="strengths-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="strengths-title" data-reveal-group>
+				<div data-reveal>
 					<p class="eyebrow">Chân dung nhanh</p>
 					<h2 id="strengths-title">Có gì trong hồ sơ này?</h2>
 				</div>
 				<div class="panel-list">
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Hướng nội có nghề</h3>
 						<p>
 							Tốt nghiệp Đại học Bờ Kênh TPHCM, hiện là công nhân đánh máy thuê tại Xí nghiệp gêm
 							Vê Nờ Gờ. Nói cách khác: một anh dev khá nghiện máy tính và thường chọn ở nhà.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Wibu nửa mùa</h3>
 						<p>
 							Thích light novel hơn manga và anime; isekai là thể loại chân ái. Thời gian rảnh
@@ -274,14 +292,14 @@
 							nhất là Keria.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Playlist đủ mọi loại mood</h3>
 						<p>
 							Rap mainstream, nhạc tâm trạng, nhạc suy, nhạc wibu, nhạc Trung… Tâm trạng nào cũng
 							có bài lót sẵn, kể cả những tâm trạng chưa đặt tên.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Sống đơn giản</h3>
 						<p>
 							Gia cảnh bình thường, lối sống tiết kiệm, không chạy theo hào nhoáng. Không thuốc
@@ -289,14 +307,14 @@
 							cưng.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Nghiêm túc với chuyện lâu dài</h3>
 						<p>
 							Từng trải qua một mối tình hơn 3 năm, chia tay cũng đã hơn 3 năm — đủ lâu để lành và
 							sẵn sàng cho một mối quan hệ mới. Chưa lập gia đình, chưa có con.
 						</p>
 					</article>
-					<article class="panel">
+					<article class="panel" data-reveal>
 						<h3>Thành thật từ đầu</h3>
 						<p>
 							Rất thích quan điểm của Phật giáo nhưng chưa/không quy y. Sống hơi tâm linh, và
@@ -306,12 +324,12 @@
 				</div>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="facts-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="facts-title" data-reveal-group>
+				<div data-reveal>
 					<p class="eyebrow">Thông tin nhanh</p>
 					<h2 id="facts-title">Để đỡ mất công đoán.</h2>
 				</div>
-				<dl class="facts-list">
+				<dl class="facts-list" data-reveal>
 					<div>
 						<dt>Tuổi</dt>
 						<dd>26 — sinh năm 1999, tuổi con 🐈</dd>
@@ -387,12 +405,13 @@
 				</dl>
 			</section>
 
-			<section class="site-shell page-section section-grid" aria-labelledby="closing-title">
-				<div>
+			<section class="site-shell page-section section-grid" aria-labelledby="closing-title" data-reveal-group>
+				<div data-reveal="soft">
+					<p class="chapter-tag">Chương 5 · Lời kết</p>
 					<p class="eyebrow">Lời kết</p>
 					<h2 id="closing-title">Kết nối để tìm hiểu thêm nhé.</h2>
 				</div>
-				<article class="panel strong">
+				<article class="panel strong" data-reveal="soft">
 					<p>
 						Cảm ơn vì đã đến. Hồ sơ chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ kết
 						nối để mình tìm hiểu nhau thêm nhé.
