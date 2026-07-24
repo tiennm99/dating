@@ -19,8 +19,10 @@
 }
 
 /* Hidden starting state. Only applied once JS can guarantee a later reveal, so
-   content is never trapped invisible for visitors without the enhancement. */
-html.js-ready [data-reveal] {
+   content is never trapped invisible for visitors without the enhancement. The
+   `:not(.film-ready)` guard hands motion to the GSAP film layer (story-film.js)
+   when it activates, so beats are never hidden by two engines at once. */
+html.js-ready:not(.film-ready) [data-reveal] {
 	opacity: 0;
 	/* translateY only — no height/display change, so nothing reflows (zero CLS). */
 	transform: translateY(var(--reveal-distance));
@@ -32,14 +34,14 @@ html.js-ready [data-reveal] {
 
 /* Closing "Lời kết" variant: same gentle rise, longer duration to let the warm
    final beat settle rather than snap in. */
-html.js-ready [data-reveal='soft'] {
+html.js-ready:not(.film-ready) [data-reveal='soft'] {
 	transition:
 		opacity var(--reveal-duration-soft) var(--reveal-ease),
 		transform var(--reveal-duration-soft) var(--reveal-ease);
 }
 
 /* Revealed state added by story.js when the element (or its group) enters view. */
-html.js-ready [data-reveal].is-visible {
+html.js-ready:not(.film-ready) [data-reveal].is-visible {
 	opacity: 1;
 	transform: none;
 }
@@ -49,8 +51,8 @@ html.js-ready [data-reveal].is-visible {
    explicitly (not relying on the global duration override in styles.css) so
    [data-reveal] can never render invisible for these visitors. */
 @media (prefers-reduced-motion: reduce) {
-	html.js-ready [data-reveal],
-	html.js-ready [data-reveal='soft'] {
+	html.js-ready:not(.film-ready) [data-reveal],
+	html.js-ready:not(.film-ready) [data-reveal='soft'] {
 		opacity: 1;
 		transform: none;
 		transition: none;

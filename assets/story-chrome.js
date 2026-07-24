@@ -48,8 +48,9 @@
 			if (id) navLinks.set(id, link);
 		});
 
-		// DOM order matters: used to pick the topmost in-view section.
-		const sections = ['home', 'jd', 'cv']
+		// DOM order matters: used to pick the topmost in-view section. Mirrors the
+		// nav targets in index.html (the four scenes that have a nav link).
+		const sections = ['home', 'applicant', 'offer', 'dossier']
 			.map((id) => document.getElementById(id))
 			.filter(Boolean);
 

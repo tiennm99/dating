@@ -24,6 +24,14 @@
 
 	const root = document.documentElement;
 
+	// The scroll-driven film (story-film.js, which runs before this script) owns
+	// the motion when active — it sets `html.film-ready`. Bail so the two engines
+	// never animate the same beats. story.css also disables its reveal under
+	// `.film-ready`, so leaving early here changes nothing for those visitors.
+	if (root.classList.contains('film-ready')) {
+		return;
+	}
+
 	// No IntersectionObserver → skip the whole enhancement. Because story.css
 	// hides content only under `html.js-ready` (never added here in that case),
 	// everything stays visible.
