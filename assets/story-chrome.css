@@ -28,15 +28,17 @@
 	line-height: 1.35;
 }
 
-/* Short leading rule. Uses currentColor so it adapts to each section context
-   (default vs. hero) and to the active theme automatically. */
+/* Short leading rule, fading in from the margin like a film slate. Uses
+   currentColor so it adapts to each section context (default vs. hero) and to
+   the active theme automatically. */
 .chapter-tag::before {
 	content: '';
 	flex: none;
-	width: 1.75rem;
+	width: 2rem;
 	height: 2px;
-	background: currentColor;
-	opacity: 0.5;
+	border-radius: 2px;
+	background: linear-gradient(90deg, transparent, currentColor);
+	opacity: 0.65;
 }
 
 /* The home hero renders on a dark photo overlay; its `.eyebrow` is already
@@ -71,7 +73,8 @@ html.js-ready .scroll-progress {
 	height: 100%;
 	transform: scaleX(0);
 	transform-origin: left center;
-	background: linear-gradient(90deg, var(--primary), var(--primary-strong));
+	background: linear-gradient(90deg, var(--primary-strong), var(--primary));
+	box-shadow: 0 0 12px var(--glow-primary);
 	will-change: transform;
 	/* Subtle smoothing between frames. The global prefers-reduced-motion block
 	   in styles.css collapses this to ~1ms, so reduced-motion visitors get the

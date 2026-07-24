@@ -7,30 +7,35 @@
 	color: var(--ink);
 	background: var(--background);
 	color-scheme: light;
-	--background: #f7fbff;
-	--surface: #ffffff;
-	--surface-muted: #eaf3ff;
-	--surface-translucent: rgba(255, 255, 255, 0.86);
-	--panel-bg: rgba(255, 255, 255, 0.82);
-	--header-bg: rgba(247, 251, 255, 0.84);
-	--ink: #102033;
-	--muted: #4d6685;
-	--primary: #1f6feb;
-	--primary-strong: #0a52bd;
-	--on-primary: #ffffff;
-	--focus: #0b70ff;
-	--line: rgba(31, 111, 235, 0.2);
-	--glow-primary: rgba(31, 111, 235, 0.18);
-	--shadow: 0 24px 70px rgba(16, 32, 51, 0.14);
+	/* Light theme — "daylight love-letter": warm ivory paper, blush surfaces,
+	   a terracotta-rose accent. Reads sincere and tender, not corporate. */
+	--background: #fbf5ee; /* warm ivory */
+	--surface: #fffaf4; /* softest warm white */
+	--surface-muted: #f4e6da; /* blush sand */
+	--surface-translucent: rgba(255, 250, 244, 0.86);
+	--panel-bg: rgba(255, 250, 244, 0.82);
+	--header-bg: rgba(251, 245, 238, 0.84);
+	--ink: #3a2a28; /* warm espresso — 12:1 on ivory */
+	--muted: #7a5a54; /* muted rosewood — ~5.9:1 on panels (AA small text) */
+	--primary: #c14d68; /* terracotta-rose — 4.65:1 with white (buttons, bold) */
+	/* --primary fails AA for small text; --primary-strong is the accessible
+	   variant used everywhere small type takes the accent colour. */
+	--primary-strong: #9e3350; /* deep rose — ~6.3:1 on ivory (AA small text) */
+	--on-primary: #fff8f4;
+	--focus: #b23a5b;
+	--line: rgba(158, 51, 80, 0.2);
+	--glow-primary: rgba(193, 77, 104, 0.16);
+	--shadow: 0 24px 70px rgba(76, 40, 40, 0.14);
 	--motion-fast: 160ms ease;
 	--motion-theme: 260ms ease;
-	--hero-ink: #ffffff;
-	--hero-muted: rgba(255, 255, 255, 0.86);
-	--hero-accent: #9dccff;
-	--hero-border: rgba(255, 255, 255, 0.72);
-	--hero-overlay-start: rgba(5, 33, 72, 0.86);
-	--hero-overlay-mid: rgba(5, 64, 132, 0.62);
-	--hero-overlay-end: rgba(5, 64, 132, 0.08);
+	/* Hero sits on a dark photo overlay in both themes — warm dusk/candlelight. */
+	--hero-ink: #fff8f4;
+	--hero-muted: rgba(255, 248, 244, 0.86);
+	--hero-accent: #f2c2a8; /* soft rose-gold */
+	--hero-border: rgba(255, 248, 244, 0.72);
+	--hero-overlay-start: rgba(60, 25, 30, 0.86);
+	--hero-overlay-mid: rgba(120, 45, 55, 0.56);
+	--hero-overlay-end: rgba(190, 90, 80, 0.1);
 	--paper: var(--surface);
 	--mist: var(--surface-muted);
 	--sage: var(--primary);
@@ -41,28 +46,32 @@
 
 :root[data-theme='dark'] {
 	color-scheme: dark;
-	--background: #050507;
-	--surface: #101014;
-	--surface-muted: #1b131b;
-	--surface-translucent: rgba(16, 16, 20, 0.86);
-	--panel-bg: rgba(18, 16, 22, 0.88);
-	--header-bg: rgba(5, 5, 7, 0.82);
-	--ink: #fff5fb;
-	--muted: #d8b9cc;
-	--primary: #ff4fa3;
-	--primary-strong: #ff7ac2;
-	--on-primary: #1d0611;
-	--focus: #ff8ec8;
-	--line: rgba(255, 79, 163, 0.28);
-	--glow-primary: rgba(255, 79, 163, 0.22);
-	--shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
-	--hero-ink: #fff5fb;
-	--hero-muted: rgba(255, 245, 251, 0.84);
-	--hero-accent: #ff9bd0;
-	--hero-border: rgba(255, 245, 251, 0.72);
-	--hero-overlay-start: rgba(5, 5, 7, 0.92);
-	--hero-overlay-mid: rgba(52, 10, 32, 0.72);
-	--hero-overlay-end: rgba(255, 79, 163, 0.1);
+	/* Dark theme — "candlelit dusk": deep plum-wine ground, warm cream ink, a
+	   rose-gold/amber glow. Intimate and soft rather than the old harsh
+	   black + hot-pink. */
+	--background: #17090f; /* deep wine-plum */
+	--surface: #241019; /* wine */
+	--surface-muted: #2e1622; /* lifted plum */
+	--surface-translucent: rgba(36, 16, 25, 0.86);
+	--panel-bg: rgba(40, 18, 28, 0.88);
+	--header-bg: rgba(23, 9, 15, 0.82);
+	--ink: #fbeae0; /* warm candlelit cream */
+	--muted: #d9a9b8; /* soft rose-mauve — ~8.7:1 on panels */
+	--primary: #f2a488; /* candlelit rose-gold — ~9:1 with --on-primary (buttons) */
+	/* In dark mode the accessible small-text variant is LIGHTER than --primary. */
+	--primary-strong: #f7bda6; /* ~11.5:1 on the plum ground (AA small text) */
+	--on-primary: #2a0e14; /* deep wine ink on the warm accent */
+	--focus: #f9c4b0;
+	--line: rgba(242, 164, 136, 0.26);
+	--glow-primary: rgba(242, 164, 136, 0.2);
+	--shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+	--hero-ink: #fbeae0;
+	--hero-muted: rgba(251, 234, 224, 0.85);
+	--hero-accent: #f7c4a8;
+	--hero-border: rgba(251, 234, 224, 0.72);
+	--hero-overlay-start: rgba(15, 6, 10, 0.92);
+	--hero-overlay-mid: rgba(66, 22, 38, 0.72);
+	--hero-overlay-end: rgba(242, 164, 136, 0.12);
 }
 
 * {
@@ -76,13 +85,72 @@ html {
 body {
 	margin: 0;
 	min-width: 320px;
+	/* Diagonal ivory→blush wash. The candlelight glows that "stay put" as the story
+	   scrolls live on the fixed, GPU-promoted body::after bloom — NOT here — so this
+	   layer needs no background-attachment: fixed (that forces a full-viewport
+	   repaint every scroll frame and is the main cause of scroll jank). */
 	background:
-		radial-gradient(circle at 12% 0%, var(--glow-primary), transparent 30rem),
-		linear-gradient(120deg, var(--background) 0%, var(--surface) 54%, var(--surface-muted) 100%);
+		linear-gradient(150deg, var(--background) 0%, var(--surface) 52%, var(--surface-muted) 100%);
 	color: var(--ink);
 	transition:
-		background var(--motion-theme),
+		background-color var(--motion-theme),
 		color var(--motion-theme);
+}
+
+/* Paper grain + gentle vignette. A fixed, non-interactive overlay that sits just
+   above content for a filmic, hand-made warmth. Deliberately NO blend mode: a
+   mix-blend-mode on a fixed, full-viewport layer forces the browser to re-blend
+   against the scrolling content every frame (scroll jank). Instead we keep it a
+   plain, cheaply-composited layer at low opacity so it reads as faint film grain
+   without touching body-text contrast. The SVG noise is inline — no network fetch. */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	opacity: 0.1;
+	background-image:
+		radial-gradient(circle at 50% 45%, transparent 58%, rgba(40, 20, 20, 0.14) 100%),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+	background-size:
+		100% 100%,
+		140px 140px;
+}
+
+/* Slow-drifting candlelight bloom, painted BEHIND content (negative z-index sits
+   above the body wash but below <main>), so translucent panels glow warmly from
+   within. Compositor-only transform drift; disabled under reduced motion. */
+body::after {
+	content: '';
+	position: fixed;
+	inset: -20% -10%;
+	z-index: -1;
+	pointer-events: none;
+	/* Radial glows are already soft to transparent, so no blur filter is needed —
+	   dropping it removes an expensive full-layer rasterization on every animation
+	   frame while looking identical. Only transform (drift) is animated, so the
+	   layer stays composited and cheap. */
+	background:
+		radial-gradient(circle at 30% 30%, var(--glow-primary), transparent 45%),
+		radial-gradient(circle at 72% 68%, var(--glow-primary), transparent 48%);
+	will-change: transform;
+	animation: candlelight-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes candlelight-drift {
+	from {
+		transform: translate3d(-2%, -1.5%, 0) scale(1.02);
+	}
+	to {
+		transform: translate3d(2.5%, 2%, 0) scale(1.08);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body::after {
+		animation: none;
+	}
 }
 
 a {
@@ -115,29 +183,39 @@ h1,
 h2,
 h3 {
 	font-family: 'Fraunces', Georgia, serif;
-	letter-spacing: 0;
-	/* Sub-1 line-height makes stacked Vietnamese diacritics collide on wrapped headings. */
-	line-height: 1.08;
+	/* Fraunces is a variable optical-size serif; let it thicken slightly as it
+	   grows so display headings feel warm and considered, not thin. */
+	font-optical-sizing: auto;
+	/* Tender editorial tightening. Kept >= 1.12 (not sub-1): stacked Vietnamese
+	   diacritics on wrapped headings — e.g. "Nghiêm túc" — clip below ~1.1. */
+	line-height: 1.14;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
 }
 
 h1 {
-	max-width: 11ch;
+	max-width: 12ch;
 	margin: 0;
-	font-size: clamp(3.4rem, 11vw, 8.8rem);
+	font-size: clamp(3.4rem, 11vw, 8.6rem);
+	font-weight: 650;
+	letter-spacing: -0.02em;
 }
 
 h2 {
 	margin: 0 0 1rem;
-	font-size: clamp(2rem, 5vw, 4.8rem);
+	font-size: clamp(2rem, 5vw, 4.6rem);
+	font-weight: 550;
 }
 
 h3 {
-	margin: 0 0 0.75rem;
+	margin: 0 0 0.6rem;
 	font-size: clamp(1.35rem, 3vw, 2.1rem);
+	font-weight: 600;
 }
 
 p {
-	line-height: 1.7;
+	line-height: 1.72;
+	text-wrap: pretty;
 }
 
 ul {
@@ -356,17 +434,19 @@ section[id] {
 
 .eyebrow {
 	margin: 0 0 1rem;
-	/* --primary fails WCAG AA (4.46:1) on the light background at this size; --primary-strong passes in both themes. */
+	/* --primary fails WCAG AA on the light background at this size; --primary-strong passes in both themes. */
 	color: var(--primary-strong);
 	font-size: 0.78rem;
 	font-weight: 700;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.14em;
 	text-transform: uppercase;
 }
 
 .lead {
-	max-width: 42rem;
-	font-size: clamp(1.1rem, 2vw, 1.35rem);
+	max-width: 40rem;
+	font-size: clamp(1.1rem, 2vw, 1.32rem);
+	line-height: 1.75;
+	color: var(--muted);
 }
 
 .button-row {
@@ -381,15 +461,18 @@ section[id] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0.85rem 1.1rem;
+	padding: 0.85rem 1.35rem;
 	border: 1px solid var(--primary);
-	border-radius: 8px;
+	border-radius: 999px; /* soft pill — warmer, more intimate than a hard rect */
 	background: var(--primary);
 	color: var(--on-primary);
 	font-weight: 700;
+	letter-spacing: 0.01em;
 	text-decoration: none;
+	box-shadow: 0 10px 26px var(--glow-primary);
 	transition:
-		transform 180ms ease,
+		transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease,
 		background 180ms ease;
 }
 
@@ -398,10 +481,17 @@ section[id] {
 	border-color: var(--primary-strong);
 	background: var(--primary-strong);
 	color: var(--on-primary);
+	box-shadow: 0 16px 34px var(--glow-primary);
 }
 
 .button.secondary {
 	background: transparent;
+	color: var(--primary-strong);
+	box-shadow: none;
+}
+
+.button.secondary:hover {
+	background: var(--glow-primary);
 	color: var(--primary-strong);
 }
 
@@ -422,21 +512,38 @@ section[id] {
 }
 
 .panel {
-	border-left: 4px solid var(--sage);
-	border-radius: 8px;
-	background: var(--panel-bg);
-	padding: clamp(1.1rem, 3vw, 1.6rem);
-	box-shadow: 0 1px 0 var(--line);
+	position: relative;
+	border-left: 3px solid var(--sage);
+	border-radius: 14px;
+	background:
+		linear-gradient(155deg, var(--surface-translucent), var(--panel-bg));
+	padding: clamp(1.2rem, 3vw, 1.7rem);
+	box-shadow:
+		0 1px 0 var(--line),
+		0 18px 40px -28px var(--glow-primary);
 	transition:
+		transform var(--motion-fast),
 		background-color var(--motion-theme),
 		border-color var(--motion-theme),
 		box-shadow var(--motion-theme),
 		color var(--motion-theme);
 }
 
+.panel:hover {
+	transform: translateY(-3px);
+	box-shadow:
+		0 1px 0 var(--line),
+		0 26px 52px -26px var(--glow-primary);
+}
+
 .panel.strong {
+	border-left-width: 4px;
 	border-color: var(--oxblood);
-	box-shadow: var(--shadow);
+	/* Warm halo marks the emotional / high-signal panels (closing beat, the
+	   "things we both protect" pledge). */
+	box-shadow:
+		var(--shadow),
+		0 0 60px -18px var(--glow-primary);
 }
 
 .meta-grid {
@@ -445,8 +552,9 @@ section[id] {
 	gap: 1px;
 	margin-top: 2rem;
 	overflow: hidden;
-	border-radius: 8px;
+	border-radius: 14px;
 	background: var(--line);
+	box-shadow: 0 18px 40px -30px var(--glow-primary);
 	transition: background-color var(--motion-theme);
 }
 
@@ -474,6 +582,7 @@ section[id] {
 /* ---------- Home page ---------- */
 
 .home-hero {
+	position: relative;
 	min-height: min(760px, 82dvh);
 	display: flex;
 	align-items: center;
@@ -493,7 +602,23 @@ section[id] {
 	color: var(--hero-ink);
 }
 
+/* Cinematic hold on the opening frame: a soft edge vignette plus a warm candle
+   bloom rising from the lower-left, so the cold open reads as dusk light rather
+   than a flat photo. Decorative + non-interactive; text sits above via z-index. */
+.home-hero::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background:
+		radial-gradient(120% 90% at 20% 100%, var(--hero-overlay-end), transparent 60%),
+		radial-gradient(130% 120% at 50% 40%, transparent 52%, rgba(20, 8, 10, 0.55) 100%);
+}
+
 .hero-copy {
+	position: relative;
+	z-index: 1;
 	padding-block: clamp(5rem, 12vw, 8rem);
 }
 
@@ -527,8 +652,9 @@ section[id] {
 	display: grid;
 	gap: 1px;
 	overflow: hidden;
-	border-radius: 8px;
+	border-radius: 14px;
 	background: var(--line);
+	box-shadow: 0 18px 40px -30px var(--glow-primary);
 	transition: background-color var(--motion-theme);
 }
 
@@ -557,4 +683,92 @@ section[id] {
 	.facts-list div {
 		grid-template-columns: 1fr;
 	}
+}
+
+/* ---------- Portrait slot (Cảnh 2) ----------
+   Ships with a themed placeholder; the owner swaps in a real <img class="portrait__img">
+   (commented in index.html). Fixed aspect-ratio reserves space so adding the photo
+   later causes no layout shift (CLS). */
+.portrait {
+	margin: 1.75rem 0 0;
+	max-width: 16rem;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	background: var(--surface-muted);
+	box-shadow: var(--shadow);
+	transition:
+		background-color var(--motion-theme),
+		border-color var(--motion-theme),
+		box-shadow var(--motion-theme);
+}
+
+.portrait__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
+}
+
+/* Warm, quiet placeholder: a soft-glow ground + a muted silhouette + caption. */
+.portrait__placeholder {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.9rem;
+	padding: 1rem;
+	color: var(--muted);
+	text-align: center;
+	background:
+		radial-gradient(circle at 50% 38%, var(--glow-primary), transparent 70%),
+		linear-gradient(160deg, var(--surface) 0%, var(--surface-muted) 100%);
+}
+
+.portrait__placeholder svg {
+	width: 44%;
+	max-width: 5.5rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 3.5;
+	stroke-linecap: round;
+	opacity: 0.55;
+}
+
+.portrait__placeholder span {
+	font-size: 0.82rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+/* ---------- Inline "verify the claim" link (e.g. real playlist) ---------- */
+.panel-link {
+	margin: 0.85rem 0 0;
+	font-weight: 700;
+}
+
+.panel-link a {
+	color: var(--primary-strong); /* AA-safe small-text accent in both themes */
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.22em;
+}
+
+.panel-link a:hover {
+	color: var(--primary);
+}
+
+/* ---------- Freshness stamp (closing) ----------
+   Filled + un-hidden by assets/freshness-stamp.js only on success; the [hidden]
+   attribute keeps it out of layout until then, so a failed fetch shows nothing. */
+.freshness-stamp {
+	margin: 1.25rem 0 0;
+	color: var(--muted);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	transition: color var(--motion-theme);
 }

@@ -9,13 +9,16 @@
    styles.css and are never redefined here. */
 
 :root {
-	/* Shared motion contract — consumed by story.js and any sibling stylesheet. */
-	--reveal-distance: 26px;
-	--reveal-duration: 620ms;
-	--reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
-	--reveal-stagger: 90ms;
+	/* Shared motion contract — consumed by story.js and any sibling stylesheet.
+	   Tuned for a tender, cinematic entrance: a touch more travel, a longer
+	   settle, and a wider cascade so beats arrive like turning a page rather
+	   than snapping in. */
+	--reveal-distance: 32px;
+	--reveal-duration: 900ms;
+	--reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+	--reveal-stagger: 120ms;
 	/* Slower, softer landing reserved for the closing emotional beat. */
-	--reveal-duration-soft: 860ms;
+	--reveal-duration-soft: 1250ms;
 }
 
 /* Hidden starting state. Only applied once JS can guarantee a later reveal, so
