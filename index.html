@@ -42,8 +42,18 @@
 			(() => {
 				try {
 					const root = document.documentElement;
+					// First visit (no stored choice) follows the OS light/dark setting; a
+					// stored choice always wins. Persisting happens only on an explicit
+					// toggle (see theme-switch.js), so the OS default stays "unset" and keeps
+					// tracking the system until the visitor actually picks a theme.
 					const storedTheme = localStorage.getItem('dating-theme');
-					const theme = storedTheme === 'dark' ? 'dark' : 'light';
+					const theme =
+						storedTheme === 'dark' || storedTheme === 'light'
+							? storedTheme
+							: window.matchMedia &&
+								  window.matchMedia('(prefers-color-scheme: dark)').matches
+								? 'dark'
+								: 'light';
 
 					root.dataset.theme = theme;
 					root.style.colorScheme = theme;
@@ -75,6 +85,9 @@
 		<script src="assets/story-film.js" defer></script>
 		<script src="assets/story.js" defer></script>
 		<script src="assets/story-chrome.js" defer></script>
+		<!-- Fills the closing "cập nhật [ngày]" stamp from the GitHub commit date;
+		     independent of the motion engines, degrades silently on any failure. -->
+		<script src="assets/freshness-stamp.js" defer></script>
 	</head>
 	<body>
 		<div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__fill"></span></div>
@@ -155,6 +168,33 @@
 					<p class="chapter-tag">Cảnh 2 · Nhân vật chính</p>
 					<p class="eyebrow">Chân dung nhanh</p>
 					<h2 id="applicant-title">Ứng viên là ai?</h2>
+					<!-- OWNER: thêm ảnh chân dung thật vào assets/ (khuyến nghị ~800×1000, .webp/.jpg đã nén),
+					     rồi BỎ COMMENT thẻ <img> bên dưới và XOÁ khối .portrait__placeholder.
+					     Giữ nguyên width/height để tránh giật layout (CLS). -->
+					<figure class="portrait">
+						<!--
+						<img
+							class="portrait__img"
+							src="assets/tien.jpg"
+							alt="Ảnh chân dung của Tiến Nguyễn Minh"
+							width="800"
+							height="1000"
+							loading="lazy"
+							decoding="async"
+						/>
+						-->
+						<div
+							class="portrait__placeholder"
+							role="img"
+							aria-label="Ảnh chân dung sẽ được thêm sau"
+						>
+							<svg viewBox="0 0 80 96" aria-hidden="true" focusable="false">
+								<circle cx="40" cy="32" r="18" />
+								<path d="M12 92c0-17 13-30 28-30s28 13 28 30" />
+							</svg>
+							<span>Ảnh thật cập nhật sau</span>
+						</div>
+					</figure>
 				</div>
 				<div class="panel-list">
 					<article class="panel" data-reveal>
@@ -178,7 +218,24 @@
 							Rap mainstream, nhạc tâm trạng, nhạc suy, nhạc wibu, nhạc Trung… Tâm trạng nào cũng
 							có bài lót sẵn, kể cả những tâm trạng chưa đặt tên.
 						</p>
+						<!-- OWNER: thay PLAYLIST_URL_HERE bằng link playlist công khai thật (Spotify/YouTube).
+						     Dùng link thường, KHÔNG nhúng iframe (giữ trang nhẹ, không script bên thứ ba). -->
+						<p class="panel-link">
+							<a href="PLAYLIST_URL_HERE" target="_blank" rel="noopener noreferrer"
+								>Nghe thử playlist →</a
+							>
+						</p>
 					</article>
+					<!-- OWNER — "chi tiết cụ thể" beat: một chi tiết THẬT, cụ thể sẽ đáng nhớ hơn
+					     mấy dòng chung chung (một buổi Thứ Bảy điển hình, món anh hay nấu, tuyến đi
+					     bộ quen). Viết bằng giọng của anh rồi bỏ comment khối dưới. Giữ data-reveal
+					     để nó hiện đúng theo cả ba tầng chuyển động.
+					<article class="panel" data-reveal>
+						<h3>[Tiêu đề: một chi tiết cụ thể]</h3>
+						<p>[Kể một điều thật, cụ thể — ví dụ Thứ Bảy của anh thường trôi qua thế nào,
+						hoặc món anh nấu ngon nhất.]</p>
+					</article>
+					-->
 				</div>
 			</section>
 
@@ -218,6 +275,15 @@
 							cũng hơi… tà răm — fetish là chân 🌚. 162cm là số đo thật, không cộng dép.
 						</p>
 					</article>
+					<!-- OWNER — beat "thành thật đến tận cùng": mấy dòng trên đều là khuyết điểm dễ
+					     thương. Một điều thật lòng, KHÔNG dễ thương (một nỗi sợ, một điều còn đang cố
+					     sửa) sẽ khiến hồ sơ này khác hẳn kiểu diễn. Viết bằng giọng của anh rồi bỏ
+					     comment. Giữ data-reveal để hiện đúng theo cả ba tầng chuyển động.
+					<article class="panel" data-reveal>
+						<h3>[Một điều thật lòng, không tô vẽ]</h3>
+						<p>[Một câu thành thật anh thấy hơi khó nói — điều anh đang cố hoàn thiện.]</p>
+					</article>
+					-->
 				</div>
 			</section>
 
@@ -349,6 +415,27 @@
 						Cảm ơn vì đã đến. Thước phim chỉ kể được một phần thôi — nếu thấy có chút hợp sóng, cứ
 						kết nối để mình tìm hiểu nhau thêm nhé.
 					</p>
+					<!-- OWNER: thay YOUR_HANDLE bằng tên tài khoản Facebook / Instagram thật của anh
+					     (ví dụ facebook.com/tien.nguyen). Đây là cánh cửa "ứng tuyển" của cả trang. -->
+					<div class="button-row">
+						<a
+							class="button"
+							href="https://www.facebook.com/YOUR_HANDLE"
+							target="_blank"
+							rel="noopener noreferrer"
+							>Nhắn qua Facebook</a
+						>
+						<a
+							class="button secondary"
+							href="https://www.instagram.com/YOUR_HANDLE"
+							target="_blank"
+							rel="noopener noreferrer"
+							>Theo dõi Instagram</a
+						>
+					</div>
+					<!-- Dấu "còn mở tính đến [ngày]" — assets/freshness-stamp.js tự điền theo ngày
+					     commit mới nhất trên GitHub và bỏ ẩn khi thành công; nếu lỗi/offline thì để ẩn. -->
+					<p class="freshness-stamp" data-freshness hidden></p>
 				</article>
 			</section>
 
