@@ -40,10 +40,18 @@ html.film-ready .film-scene:not(.section-grid):not(.home-hero) {
    first paint and the script running. failOpen() overrides both with inline
    styles, so this can never trap content.
 
-   No blanket `will-change`: holding a compositor layer for all 31 beats for the
+   The `:not(.beat-in)` guard is load-bearing. On completion story-film.js
+   clears its inline styles and adds `.beat-in`, handing the element back to the
+   stylesheet — without the guard, clearing the inline transform would let this
+   rule re-hide the beat. The reason for the handoff at all: GSAP leaves a
+   residual inline `transform: translate(0px, 0px)`, and an inline transform
+   outranks any stylesheet rule, which silently disabled `.panel:hover`'s lift
+   for the whole session.
+
+   No blanket `will-change`: holding a compositor layer for every beat for the
    life of the page costs more than it saves. story-film.js sets it per beat when
    a reveal starts and clears it on completion. */
-html.film-ready [data-scene] [data-reveal] {
+html.film-ready [data-scene] [data-reveal]:not(.beat-in) {
 	opacity: 0;
 	transform: translateY(40px);
 }
@@ -51,8 +59,17 @@ html.film-ready [data-scene] [data-reveal] {
 /* Defensive: the film never activates under reduced motion (story-film.js gates
    on it), but if that ever changes, keep content visible rather than hidden. */
 @media (prefers-reduced-motion: reduce) {
-	html.film-ready [data-scene] [data-reveal] {
+	html.film-ready [data-scene] [data-reveal]:not(.beat-in) {
 		opacity: 1;
 		transform: none;
 	}
+}
+
+/* Beats in #applicant slide in from the side, which puts them briefly outside
+   the 16px gutter. Clipping the x axis only contains that without creating a
+   scroll container, so ScrollTrigger's pinning is unaffected (this computes to
+   `clip visible`, and both pins keep identical start/end across a refresh).
+   Film-scoped: the other two tiers have no horizontal travel to contain. */
+html.film-ready main {
+	overflow: clip visible;
 }
