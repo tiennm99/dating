@@ -1,6 +1,12 @@
 # Dating
 
-Warm-witty dating JD and CV site for Tiến Nguyễn Minh.
+A warm open letter from Tiến Nguyễn Minh to whoever comes along, told as a
+scroll-driven short film. Vietnamese only.
+
+The page was originally framed as a mock job description and CV; that conceit
+was dropped in favour of a plainly romantic register, so avoid reintroducing
+recruiting language (ứng viên, vị trí, quyền lợi, trách nhiệm, tuyển chọn) when
+editing copy.
 
 ## Structure
 

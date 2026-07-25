@@ -1,5 +1,5 @@
-// freshness-stamp.js — fills the "vị trí vẫn đang mở · cập nhật [ngày]" stamp in
-// the closing scene from the repo's latest commit date, via the public GitHub REST
+// freshness-stamp.js — fills the "vẫn đang tìm · cập nhật [ngày]" stamp on the end
+// card from the repo's latest commit date, via the public GitHub REST
 // API (no build step, no backend, no token in client code — unauthenticated call,
 // 60 req/hr/IP is plenty for a personal page).
 //
@@ -35,7 +35,7 @@
 				year: 'numeric',
 			}).format(date);
 
-			el.textContent = 'Vị trí vẫn đang mở · cập nhật ' + formatted + '.';
+			el.textContent = 'Vẫn đang tìm · cập nhật ' + formatted + '.';
 			el.hidden = false;
 
 			// The stamp lands after ScrollTrigger has already measured, so every

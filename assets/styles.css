@@ -668,44 +668,39 @@ section[id] {
 	line-height: 1.6;
 }
 
-/* ---------- Cảnh 4 · "Gói đãi ngộ" benefit list ----------
-   A numbered package rather than four title-less floating boxes, so scene 4 has
-   a shape of its own and the JD conceit reads as structure instead of filler. */
-.benefit-list {
+/* ---------- Cảnh 4 · What he can offer ----------
+   Four unhurried lines. This was a numbered, hairline-ruled table, which read as
+   a compensation schedule; scene 4 still needs a shape distinct from the vow
+   (scene 5) and the quiet climax (scene 6), so it keeps body-size type and a
+   small rose mark instead of borrowing either of theirs. */
+.gift-list {
 	display: grid;
-	margin: 2rem 0 0;
+	margin: 2.25rem 0 0;
 	padding: 0;
-	gap: 1px;
-	overflow: hidden;
-	border-radius: 14px;
+	gap: 1.35rem;
 	list-style: none;
-	background: var(--line);
-	box-shadow: 0 18px 40px -30px var(--glow-primary);
-	counter-reset: benefit;
-	transition: background-color var(--motion-theme);
+	max-width: 44rem;
 }
 
-.benefit-list li {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	gap: 1rem;
+.gift-list li {
+	position: relative;
 	margin: 0;
-	background: var(--panel-bg);
-	padding: 1.15rem 1.25rem;
+	padding-left: 1.75rem;
 	line-height: 1.72;
-	transition: background-color var(--motion-theme);
 }
 
-.benefit-list li::before {
-	counter-increment: benefit;
-	content: counter(benefit, decimal-leading-zero);
-	color: var(--primary-strong);
-	font-family: 'Fraunces', Georgia, serif;
-	font-size: 0.9rem;
-	font-weight: 700;
-	letter-spacing: 0.06em;
-	/* Align the numeral with the first line of body text beside it. */
-	line-height: 1.9;
+/* A small open circle rather than a bullet or a numeral: present enough to mark
+   the line, quiet enough not to tally it. */
+.gift-list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.62em;
+	width: 0.5rem;
+	height: 0.5rem;
+	border: 1.5px solid var(--primary);
+	border-radius: 50%;
+	transition: border-color var(--motion-theme);
 }
 
 /* ---------- Cảnh 5 · The vow ----------
@@ -736,35 +731,11 @@ section[id] {
 	transition: border-color var(--motion-theme);
 }
 
-.meta-grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 1px;
-	margin-top: 2rem;
-	overflow: hidden;
-	border-radius: 14px;
-	background: var(--line);
-	box-shadow: 0 18px 40px -30px var(--glow-primary);
-	transition: background-color var(--motion-theme);
-}
-
-.meta-grid > div {
-	background: var(--panel-bg);
-	padding: 1rem;
-	transition: background-color var(--motion-theme);
-}
-
-.meta-grid span {
-	display: block;
-	color: var(--muted);
-	font-size: 0.78rem;
-	font-weight: 700;
-	text-transform: uppercase;
-}
+/* .meta-grid removed with the job-spec table it styled (Loại hình / Địa điểm /
+   Ngày bắt đầu) — that block only made sense while the page was a job posting. */
 
 @media (max-width: 720px) {
-	.section-grid,
-	.meta-grid {
+	.section-grid {
 		grid-template-columns: 1fr;
 	}
 }
