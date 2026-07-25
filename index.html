@@ -121,6 +121,15 @@
 		<script src="assets/freshness-stamp.js" defer></script>
 	</head>
 	<body>
+		<!-- The room gets later as she reads. One fixed backdrop layer whose --night
+		     value travels from her own local hour toward midnight across the whole
+		     page, so the nine scenes read as one evening rather than nine slides.
+		     Purely atmospheric and aria-hidden: it never touches the theme tokens
+		     (her explicit light/dark choice always wins) and never gates content.
+		     Defaults to a lit room in CSS, so the no-JS and reduced-motion tiers get
+		     a deliberate composition rather than an unlit one. -->
+		<div class="nightfall" aria-hidden="true"><span class="nightfall__dust"></span></div>
+
 		<div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__fill"></span></div>
 
 		<a class="skip-link" href="#content">Bỏ qua đến nội dung</a>

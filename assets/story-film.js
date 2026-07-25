@@ -233,7 +233,59 @@
 			});
 		}
 
-		/* ---------- 2. Scene 2 set-piece: the photograph is picked up ---------- */
+		/* ---------- 2. Đêm dần xuống · the night falls ---------- */
+
+		// The single continuous transformation across all nine scenes, and the
+		// reason the page reads as one evening rather than nine slides. The room
+		// gets later as she scrolls, starting from the hour on HER OWN device — so
+		// if she opens this at 1am it is already deep night, and a friend she shows
+		// it to tomorrow afternoon sees a different room. Nothing leaves the device
+		// and there is no backend; it is just her clock.
+		//
+		// Deliberately drives ONE custom property on ONE element. Writing a scrubbed
+		// value onto :root would invalidate every element that inherits it, every
+		// frame; scoping it to .nightfall keeps the recalculation to one subtree.
+		//
+		// It must never touch the palette tokens — she may have explicitly chosen
+		// light or dark, and overriding that would be a bug, not a feature.
+		const nightfall = document.querySelector('.nightfall');
+		if (nightfall) {
+			// Where the evening starts, by local hour. Daytime still opens softly
+			// lit rather than at zero, because the room has a lamp in it either way.
+			const hour = new Date().getHours();
+			const startNight =
+				hour >= 1 && hour < 5
+					? 0.72 // small hours
+					: hour < 16
+						? 0.12 // daytime
+						: hour < 19
+							? 0.22 // late afternoon
+							: hour < 21
+								? 0.34 // early evening
+								: hour < 23
+									? 0.48 // night
+									: 0.62; // near midnight
+
+			// Always leave headroom so the arc is felt rather than saturating early.
+			const endNight = Math.min(0.96, startNight + 0.46);
+
+			gsap.fromTo(
+				nightfall,
+				{ '--night': startNight },
+				{
+					'--night': endNight,
+					ease: 'none',
+					scrollTrigger: {
+						trigger: document.body,
+						start: 'top top',
+						end: 'bottom bottom',
+						scrub: SCRUB,
+					},
+				},
+			);
+		}
+
+		/* ---------- 3. Scene 2 set-piece: the photograph is picked up ---------- */
 
 		// The one place on this page where a "turn" is physically motivated. The
 		// hero frame establishes a desk with a letter on it; this is a photograph
@@ -287,7 +339,7 @@
 			});
 		}
 
-		/* ---------- 3. Per-beat entrances (non-reversing) ---------- */
+		/* ---------- 4. Per-beat entrances (non-reversing) ---------- */
 
 		// One batch per scene so each can carry its own tempo, and so a tall scene
 		// times its lower half correctly — a single scene-level trigger never can.
@@ -352,7 +404,7 @@
 			});
 		});
 
-		/* ---------- 4. Anchor jumps travel with the film's camera ---------- */
+		/* ---------- 5. Anchor jumps travel with the film's camera ---------- */
 
 		// Native `scroll-behavior: smooth` bypasses Lenis: a nav click warps the
 		// page in ~24 frames with a completely different easing signature from
@@ -379,7 +431,7 @@
 			});
 		});
 
-		/* ---------- 5. Measurement ---------- */
+		/* ---------- 6. Measurement ---------- */
 
 		// Pins change total scroll height; recompute all triggers once now and on
 		// full load (fonts/images can shift layout after this script runs).
