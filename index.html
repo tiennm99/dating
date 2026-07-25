@@ -9,11 +9,24 @@
 			content="Mô tả công việc cho vị trí người yêu tương lai và hồ sơ hẹn hò dí dỏm của Tiến Nguyễn Minh — kể như một thước phim ngắn."
 		/>
 		<link rel="icon" href="assets/favicon.svg" />
+		<!-- The hero photo is the film's opening frame but is only discoverable after
+		     styles.css parses; preloading it pulls the first paint forward. -->
+		<link
+			rel="preload"
+			as="image"
+			href="assets/dating-application-hero-background.webp"
+			fetchpriority="high"
+		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Fraunces is requested as a continuous weight RANGE (400..750), not as three
+		     fixed instances. With only 500/650/750 available, CSS weight matching
+		     snapped both h2 (550) and h3 (600) to 650 — h1, h2 and h3 all rendered at
+		     the same weight and the type hierarchy the stylesheet describes did not
+		     exist. Be Vietnam Pro 500 was requested but never used; dropped. -->
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&amp;display=swap"
+			href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;family=Fraunces:opsz,wght@9..144,400..750&amp;display=swap"
 		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Dating JD &amp; CV" />
@@ -63,6 +76,21 @@
 					// Consumed by assets/story.css and assets/story-chrome.css.
 					if ('IntersectionObserver' in window) {
 						root.classList.add('js-ready');
+
+						// Watchdog. `js-ready` hides all 31 beats, and the engine that
+						// reveals them again sits behind ~40KB of deferred CDN script.
+						// A hard CDN failure is handled (the scripts never run, and
+						// story.js is local), but a SLOW-but-successful CDN is not:
+						// until it resolves, the first paint contains no words at all.
+						// If no engine has claimed the page in time, un-hide everything
+						// and let the reader read. Engines set `storyEngine` when they
+						// take over; story.js also checks `storyWatchdog` so it never
+						// re-hides content this already revealed.
+						window.setTimeout(() => {
+							if (root.dataset.storyEngine) return;
+							root.dataset.storyWatchdog = 'fired';
+							root.classList.remove('js-ready');
+						}, 1200);
 					}
 				} catch {
 					document.documentElement.dataset.theme = 'light';
@@ -76,10 +104,13 @@
 		<link rel="stylesheet" href="assets/story-film.css" />
 		<script src="assets/theme-switch.js" defer></script>
 		<!-- Film engine libraries (CDN, versioned). Load before story-film.js.
-		     If any fails, story-film.js bails and the static reveal (story.js) runs. -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-		<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+		     If any fails, story-film.js bails and the static reveal (story.js) runs.
+		     All three come from one host so the film costs a single connection
+		     rather than two DNS+TLS handshakes. -->
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
 		<!-- story-film.js decides whether the film activates; must run before story.js
 		     so story.js can defer to it. story.js is the reduced-motion / mobile / no-CDN fallback. -->
 		<script src="assets/story-film.js" defer></script>
@@ -94,44 +125,52 @@
 
 		<a class="skip-link" href="#content">Bỏ qua đến nội dung</a>
 
-		<header class="site-shell site-header">
-			<a
-				class="brand-mark"
-				href="#home"
-				aria-label="Về đầu trang mô tả và hồ sơ hẹn hò của Tiến Nguyễn Minh"
-			>
-				<span class="brand-seal">TN</span>
-				<span>Mô tả &amp; hồ sơ hẹn hò</span>
-			</a>
+		<!-- Full-bleed bar with an inner shell: .site-shell used to be on the header
+		     itself, so the background, border and blur were clipped to 1120px and the
+		     bar floated over the hero with the photo showing on both sides. -->
+		<header class="site-header">
+			<div class="site-shell site-header__inner">
+				<a
+					class="brand-mark"
+					href="#home"
+					aria-label="Về đầu trang mô tả và hồ sơ hẹn hò của Tiến Nguyễn Minh"
+				>
+					<span class="brand-seal">TN</span>
+					<span class="brand-name">Mô tả &amp; hồ sơ hẹn hò</span>
+				</a>
 
-			<div class="header-actions">
-				<nav aria-label="Điều hướng chính">
-					<a href="#home">Mở đầu</a>
-					<a href="#applicant">Con người</a>
-					<a href="#offer">Lời mời</a>
-					<a href="#dossier">Chi tiết</a>
-				</nav>
+				<div class="header-actions">
+					<!-- "Kết nối" (#closing) is the page's only apply door; it previously
+					     had no link in the persistent chrome. -->
+					<nav aria-label="Điều hướng chính">
+						<a href="#home">Mở đầu</a>
+						<a href="#applicant">Con người</a>
+						<a href="#offer">Lời mời</a>
+						<a href="#closing">Kết nối</a>
+						<a href="#dossier">Chi tiết</a>
+					</nav>
 
-				<div class="preference-controls">
-					<div class="segmented-control icon-segmented" role="group" aria-label="Giao diện">
-						<button
-							type="button"
-							data-theme-option="light"
-							aria-label="Chuyển sang giao diện sáng"
-							aria-pressed="false"
-							title="Chuyển sang giao diện sáng"
-						>
-							<span class="emoji-icon" aria-hidden="true">☀️</span>
-						</button>
-						<button
-							type="button"
-							data-theme-option="dark"
-							aria-label="Chuyển sang giao diện tối"
-							aria-pressed="false"
-							title="Chuyển sang giao diện tối"
-						>
-							<span class="emoji-icon" aria-hidden="true">🌙</span>
-						</button>
+					<div class="preference-controls">
+						<div class="segmented-control icon-segmented" role="group" aria-label="Giao diện">
+							<button
+								type="button"
+								data-theme-option="light"
+								aria-label="Chuyển sang giao diện sáng"
+								aria-pressed="false"
+								title="Chuyển sang giao diện sáng"
+							>
+								<span class="emoji-icon" aria-hidden="true">☀️</span>
+							</button>
+							<button
+								type="button"
+								data-theme-option="dark"
+								aria-label="Chuyển sang giao diện tối"
+								aria-pressed="false"
+								title="Chuyển sang giao diện tối"
+							>
+								<span class="emoji-icon" aria-hidden="true">🌙</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -308,23 +347,22 @@
 					<div><span>Địa điểm</span>Chủ yếu ở Trái Đất, đôi khi tại Sài Gòn</div>
 					<div><span>Ngày bắt đầu</span>Khi niềm tin qua vòng xem xét</div>
 				</div>
-				<div class="panel-list">
-					<article class="panel" data-reveal>
-						<p>Ưu tiên hỗ trợ trong những ngày khó, ý tưởng lạ, và các buổi tối yên tĩnh.</p>
-					</article>
-					<article class="panel" data-reveal>
-						<p>Sự thành thật đều đặn, giao tiếp rõ ràng, và báo lỗi không đổ lỗi.</p>
-					</article>
-					<article class="panel" data-reveal>
-						<p>
-							Một người có thể gỡ lỗi hệ thống đang vận hành và cũng nghĩ hơi nhiều chuyện ăn gì
-							tối nay.
-						</p>
-					</article>
-					<article class="panel" data-reveal>
-						<p>Lộ trình phát triển dài hạn: khỏe hơn, đi nhiều hơn, và có nhiều câu chuyện hơn.</p>
-					</article>
-				</div>
+				<!-- Numbered "gói đãi ngộ" rather than four title-less floating boxes:
+				     the JD conceit lands harder as a structured package, and it gives
+				     scene 4 a shape distinct from scenes 5 and 6. Copy unchanged. -->
+				<ol class="benefit-list">
+					<li data-reveal>
+						Ưu tiên hỗ trợ trong những ngày khó, ý tưởng lạ, và các buổi tối yên tĩnh.
+					</li>
+					<li data-reveal>Sự thành thật đều đặn, giao tiếp rõ ràng, và báo lỗi không đổ lỗi.</li>
+					<li data-reveal>
+						Một người có thể gỡ lỗi hệ thống đang vận hành và cũng nghĩ hơi nhiều chuyện ăn gì tối
+						nay.
+					</li>
+					<li data-reveal>
+						Lộ trình phát triển dài hạn: khỏe hơn, đi nhiều hơn, và có nhiều câu chuyện hơn.
+					</li>
+				</ol>
 			</section>
 
 			<!-- ============ Cảnh 5 · Điều cả hai cùng giữ (trách nhiệm) ============ -->
@@ -340,21 +378,19 @@
 					<p class="eyebrow">Trách nhiệm</p>
 					<h2 id="shared-title">Điều cả hai cùng bảo vệ.</h2>
 				</div>
-				<div class="panel-list">
-					<article class="panel strong" data-reveal>
-						<ul>
-							<li>Xây niềm tin bằng lời nói thẳng thắn và những hành động nhỏ lặp lại.</li>
-							<li>
-								Tôn trọng thời gian riêng, tham vọng nghề nghiệp, gia đình, bạn bè, và các nghi
-								thức cá nhân.
-							</li>
-							<li>Mang theo sự tò mò, lòng tử tế, và thiện chí sửa chữa sau mâu thuẫn.</li>
-							<li>
-								Cùng duy trì một đời sống nơi cả hai được nghiêm túc và ngớ ngẩn đúng lúc.
-							</li>
-						</ul>
-					</article>
-				</div>
+				<!-- Unboxed on purpose. As four large serif lines, each arriving as its
+				     own beat, these read as a vow; inside the same rose-bordered
+				     rectangle as every other scene they read as an HR policy. Copy
+				     unchanged — only the container and the beat granularity differ. -->
+				<ul class="vow-list">
+					<li data-reveal>Xây niềm tin bằng lời nói thẳng thắn và những hành động nhỏ lặp lại.</li>
+					<li data-reveal>
+						Tôn trọng thời gian riêng, tham vọng nghề nghiệp, gia đình, bạn bè, và các nghi thức cá
+						nhân.
+					</li>
+					<li data-reveal>Mang theo sự tò mò, lòng tử tế, và thiện chí sửa chữa sau mâu thuẫn.</li>
+					<li data-reveal>Cùng duy trì một đời sống nơi cả hai được nghiêm túc và ngớ ngẩn đúng lúc.</li>
+				</ul>
 			</section>
 
 			<!-- ============ Cảnh 6 · Không có bài kiểm tra áp lực (điểm cộng + cao trào) ============ -->
@@ -382,10 +418,25 @@
 								quý.
 							</li>
 							<li>Tin rằng tình cảm chạy tốt hơn nhờ kiên nhẫn, không phải trò đoán ý.</li>
-							<li>Về tử vi: tuổi 🐈 này hợp các tuổi 🐒 🐅 🐍 🐎 🐖 hoặc 🐉 🐕 — nhưng hợp sóng vẫn hơn hợp tuổi.</li>
+							<!-- Zodiac emoji carry meaning here, so they are labelled in Vietnamese;
+							     unlabelled, a screen reader announces eight English emoji names
+							     in the middle of a Vietnamese sentence. -->
+							<li>
+								Về tử vi: tuổi <span role="img" aria-label="Mão">🐈</span> này hợp các tuổi
+								<span role="img" aria-label="Thân">🐒</span>
+								<span role="img" aria-label="Dần">🐅</span>
+								<span role="img" aria-label="Tỵ">🐍</span>
+								<span role="img" aria-label="Ngọ">🐎</span>
+								<span role="img" aria-label="Hợi">🐖</span> hoặc
+								<span role="img" aria-label="Thìn">🐉</span>
+								<span role="img" aria-label="Tuất">🐕</span> — nhưng hợp sóng vẫn hơn hợp tuổi.
+							</li>
 						</ul>
 					</article>
-					<article class="panel strong" data-reveal>
+					<!-- The written climax of the page. Deliberately the quietest block in
+					     the layout — no accent border, no halo, centred and given room —
+					     so the calmest thing on screen is also the most important. -->
+					<article class="panel quiet" data-reveal>
 						<h3>Ghi chú tuyển chọn</h3>
 						<p>
 							Không có bài kiểm tra áp lực. Không có vòng giải đố ẩn. Ứng viên mạnh là người vẫn
@@ -407,7 +458,9 @@
 			>
 				<div data-reveal="soft">
 					<p class="chapter-tag">Cảnh 7 · Lời kết</p>
-					<p class="eyebrow">Lời kết</p>
+					<!-- The .eyebrow here read "Lời kết", repeating the chapter tag directly
+					     above it verbatim. Removed rather than demoted; every other scene
+					     keeps its eyebrow. -->
 					<h2 id="closing-title">Kết nối để tìm hiểu thêm nhé.</h2>
 				</div>
 				<article class="panel strong" data-reveal="soft">
@@ -433,9 +486,6 @@
 							>Theo dõi Instagram</a
 						>
 					</div>
-					<!-- Dấu "còn mở tính đến [ngày]" — assets/freshness-stamp.js tự điền theo ngày
-					     commit mới nhất trên GitHub và bỏ ẩn khi thành công; nếu lỗi/offline thì để ẩn. -->
-					<p class="freshness-stamp" data-freshness hidden></p>
 				</article>
 			</section>
 
@@ -523,9 +573,34 @@
 					</div>
 					<div>
 						<dt>Góc riêng tư</dt>
-						<dd>Hơi… tà răm. Fetish là chân 🌚</dd>
+						<dd>Hơi… tà răm. Fetish là chân <span role="img" aria-label="mặt trăng quay lưng">🌚</span></dd>
 					</div>
 				</dl>
+			</section>
+
+			<!-- ============ Khung cuối · End card ============
+			     The dossier is the longest block on the page and used to be the last
+			     thing the reader saw, so the film ended on a reference table. This is
+			     the last frame: it turns the dossier into a credits roll, gives the
+			     freshness stamp a home outside the pinned #closing (where it shifted
+			     layout after measurement), and repeats the apply door at the true
+			     bottom, where the reader actually finishes. -->
+			<section class="site-shell page-section end-card film-scene" id="end" data-scene data-reveal-group>
+				<span class="brand-seal end-card__seal" aria-hidden="true">TN</span>
+				<!-- OWNER: một chữ duy nhất do máy thêm vào — đổi hoặc xoá tuỳ ý anh. -->
+				<p class="end-card__mark" data-reveal="soft">Hết.</p>
+				<div class="button-row" data-reveal="soft">
+					<a
+						class="button"
+						href="https://www.facebook.com/YOUR_HANDLE"
+						target="_blank"
+						rel="noopener noreferrer"
+						>Nhắn qua Facebook</a
+					>
+				</div>
+				<!-- Dấu "còn mở tính đến [ngày]" — assets/freshness-stamp.js tự điền theo ngày
+				     commit mới nhất trên GitHub và bỏ ẩn khi thành công; nếu lỗi/offline thì để ẩn. -->
+				<p class="freshness-stamp" data-freshness hidden></p>
 			</section>
 		</main>
 	</body>

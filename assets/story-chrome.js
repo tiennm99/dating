@@ -20,10 +20,19 @@
 
 		if (fill) {
 			let ticking = false;
+			// Cached scroll extent. Reading scrollHeight inside the rAF callback
+			// forces a layout on every scroll frame, and with Lenis writing scroll
+			// position and pins mutating layout each frame, that recomputes
+			// continuously. Recompute only when the document can actually change
+			// height: resize, and after ScrollTrigger re-measures its pins.
+			let max = 0;
+
+			const measure = () => {
+				max = docEl.scrollHeight - window.innerHeight;
+			};
 
 			const updateProgress = () => {
 				ticking = false;
-				const max = docEl.scrollHeight - window.innerHeight;
 				const fraction = max > 0 ? window.scrollY / max : 0;
 				// Clamp to 0..1 (rubber-band scrolling can overshoot on some devices).
 				const clamped = fraction < 0 ? 0 : fraction > 1 ? 1 : fraction;
@@ -36,9 +45,19 @@
 				window.requestAnimationFrame(updateProgress);
 			};
 
+			const remeasure = () => {
+				measure();
+				requestProgress();
+			};
+
+			measure();
 			updateProgress(); // initial paint (e.g. deep-link / restored scroll position)
 			window.addEventListener('scroll', requestProgress, { passive: true });
-			window.addEventListener('resize', requestProgress, { passive: true });
+			window.addEventListener('resize', remeasure, { passive: true });
+			// Pins add scroll distance; re-measure whenever the film re-measures.
+			window.ScrollTrigger?.addEventListener('refresh', remeasure);
+			// Fonts and the hero frame can settle after this script runs.
+			window.addEventListener('load', remeasure, { passive: true });
 		}
 
 		/* ---------- Scroll-linked active nav ---------- */
@@ -49,8 +68,8 @@
 		});
 
 		// DOM order matters: used to pick the topmost in-view section. Mirrors the
-		// nav targets in index.html (the four scenes that have a nav link).
-		const sections = ['home', 'applicant', 'offer', 'dossier']
+		// nav targets in index.html, in the order they appear in the document.
+		const sections = ['home', 'applicant', 'offer', 'closing', 'dossier']
 			.map((id) => document.getElementById(id))
 			.filter(Boolean);
 

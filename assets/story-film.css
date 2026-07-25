@@ -10,9 +10,26 @@
 
 /* Each scene becomes a full-height stage so beats have room to scrub in and
    pinned title cards hold cleanly. min-height (not fixed height) lets
-   content-heavy scenes grow past the viewport instead of clipping. */
+   content-heavy scenes grow past the viewport instead of clipping.
+
+   Deliberately does NOT set `display`: five scenes carry `.section-grid`
+   (display:grid, two editorial columns) and this selector's specificity (0,2,1)
+   would silently beat it (0,1,0), collapsing them to one 1120px column at ~130
+   characters per line. Vertical centring is expressed per display type below. */
 html.film-ready .film-scene {
 	min-height: 100vh;
+}
+
+/* Grid scenes keep their two columns; centre the rows in the taller stage. */
+html.film-ready .section-grid {
+	align-content: center;
+}
+
+/* The only non-grid, non-hero scene (#offer) is a single column, so it centres
+   as a flex column. .home-hero is excluded: it already sets its own
+   `display:flex; align-items:center` for a row, and flipping it to a column
+   would silently repurpose that align-items into horizontal alignment. */
+html.film-ready .film-scene:not(.section-grid):not(.home-hero) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -21,11 +38,14 @@ html.film-ready .film-scene {
 /* Pre-hide beats so there is no flash before GSAP takes over. story-film.js
    sets the same values via gsap.set(); this rule only covers the gap between
    first paint and the script running. failOpen() overrides both with inline
-   styles, so this can never trap content. */
+   styles, so this can never trap content.
+
+   No blanket `will-change`: holding a compositor layer for all 31 beats for the
+   life of the page costs more than it saves. story-film.js sets it per beat when
+   a reveal starts and clears it on completion. */
 html.film-ready [data-scene] [data-reveal] {
 	opacity: 0;
 	transform: translateY(40px);
-	will-change: opacity, transform;
 }
 
 /* Defensive: the film never activates under reduced motion (story-film.js gates

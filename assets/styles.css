@@ -9,11 +9,18 @@
 	color-scheme: light;
 	/* Light theme — "daylight love-letter": warm ivory paper, blush surfaces,
 	   a terracotta-rose accent. Reads sincere and tender, not corporate. */
+	/* Measured height of the sticky header, consumed by section[id]'s
+	   scroll-margin-top so anchor jumps never land a heading behind the bar.
+	   Overridden per breakpoint where the header changes shape. */
+	--header-h: 5.5rem;
 	--background: #fbf5ee; /* warm ivory */
 	--surface: #fffaf4; /* softest warm white */
-	--surface-muted: #f4e6da; /* blush sand */
+	--surface-muted: #f0dccd; /* blush sand — deepened so panels separate from the ground */
 	--surface-translucent: rgba(255, 250, 244, 0.86);
-	--panel-bg: rgba(255, 250, 244, 0.82);
+	/* Warmer and a touch more opaque than the ground: at rgba(255,250,244,.82) on
+	   an ivory page the panels had almost no surface separation and read as pale
+	   stationery rather than candlelit. Text contrast is unchanged. */
+	--panel-bg: rgba(255, 248, 240, 0.94);
 	--header-bg: rgba(251, 245, 238, 0.84);
 	--ink: #3a2a28; /* warm espresso — 12:1 on ivory */
 	--muted: #7a5a54; /* muted rosewood — ~5.9:1 on panels (AA small text) */
@@ -36,11 +43,11 @@
 	--hero-overlay-start: rgba(60, 25, 30, 0.86);
 	--hero-overlay-mid: rgba(120, 45, 55, 0.56);
 	--hero-overlay-end: rgba(190, 90, 80, 0.1);
+	/* Legacy aliases still referenced by component rules below. --mist and
+	   --brass were also defined here but had zero usages; removed. */
 	--paper: var(--surface);
-	--mist: var(--surface-muted);
 	--sage: var(--primary);
 	--oxblood: var(--primary-strong);
-	--brass: var(--focus);
 	--blueprint: var(--muted);
 }
 
@@ -80,6 +87,13 @@
 
 html {
 	scroll-behavior: smooth;
+}
+
+/* When the film runs, in-page links are routed through Lenis (story-film.js) so
+   they share the film's camera easing. Native smooth scrolling would race that
+   and warp the page in ~24 frames with a different easing signature. */
+html.film-ready {
+	scroll-behavior: auto;
 }
 
 body {
@@ -266,14 +280,13 @@ li + li {
 	margin-inline: auto;
 }
 
+/* Full-bleed bar. The background, border and blur belong to the header itself;
+   the 1120px measure is applied to the inner wrapper only, so the bar spans the
+   viewport like the progress rail above it. */
 .site-header {
 	position: sticky;
 	top: 0;
 	z-index: 10;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
 	padding-block: 1rem;
 	border-bottom: 1px solid var(--line);
 	background: var(--header-bg);
@@ -282,6 +295,13 @@ li + li {
 		background-color var(--motion-theme),
 		border-color var(--motion-theme),
 		box-shadow var(--motion-theme);
+}
+
+.site-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
 }
 
 .brand-mark,
@@ -400,20 +420,67 @@ nav a.active {
 }
 
 @media (max-width: 720px) {
+	/* The header used to stack into three rows (brand / wrapped nav / theme) and
+	   measured 254px — 40% of a 640px viewport, permanently sticky, on the tier
+	   where reading *is* the product. It now stays a single row: the brand
+	   collapses to its seal and the nav scrolls horizontally instead of wrapping. */
 	.site-header {
-		align-items: flex-start;
-		flex-direction: column;
+		padding-block: 0.6rem;
 	}
 
-	.header-actions,
-	.preference-controls {
-		width: 100%;
-		justify-content: space-between;
+	/* backdrop-filter on a full-width sticky element is the most expensive paint
+	   on the page, and mobile is the tier that can least afford it. The header
+	   background is already near-opaque, so dropping the blur is barely visible. */
+	@supports (backdrop-filter: blur(1px)) {
+		.site-header {
+			backdrop-filter: none;
+		}
+	}
+
+	.site-header__inner {
+		gap: 0.6rem;
+	}
+
+	/* Keep the seal (it is the brand) and drop the long wordmark that forced the
+	   wrap. The link keeps its aria-label, so its accessible name is unchanged. */
+	.brand-name {
+		display: none;
+	}
+
+	.header-actions {
+		min-width: 0;
+		flex: 1;
+		flex-wrap: nowrap;
+		gap: 0.5rem;
 	}
 
 	nav {
-		max-width: 100%;
-		flex-wrap: wrap;
+		min-width: 0;
+		overflow-x: auto;
+		flex-wrap: nowrap;
+		gap: 0.25rem;
+		/* Momentum scrolling without a visible scrollbar eating vertical space. */
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	nav a {
+		padding: 0.5rem 0.6rem;
+		font-size: 0.88rem;
+		white-space: nowrap;
+	}
+
+	.preference-controls {
+		flex: none;
+	}
+
+	/* One row of chrome, so anchor targets clear a much smaller bar. */
+	:root {
+		--header-h: 4rem;
 	}
 }
 
@@ -427,19 +494,26 @@ nav a.active {
 	font-size: clamp(2.8rem, 8vw, 6.4rem);
 }
 
-/* Keep anchor targets clear of the sticky header when navigating with #hash links. */
+/* Keep anchor targets clear of the sticky header when navigating with #hash links.
+   Driven by --header-h so the mobile breakpoint cannot drift out of sync with the
+   real bar height (it previously reserved 88px against a 254px header, so every
+   mobile anchor jump landed the heading behind the chrome). */
 section[id] {
-	scroll-margin-top: 5.5rem;
+	scroll-margin-top: calc(var(--header-h) + 0.5rem);
 }
 
+/* Demoted to a quiet sub-label. Every scene stacks .chapter-tag + .eyebrow above
+   its heading, and when both were uppercase, letterspaced and --primary-strong
+   the eyebrow — being longer — outweighed the chapter tag above it and inverted
+   the hierarchy. Sentence case, muted, no tracking: the slate leads, the eyebrow
+   supports, the heading lands. No copy changed. */
 .eyebrow {
 	margin: 0 0 1rem;
-	/* --primary fails WCAG AA on the light background at this size; --primary-strong passes in both themes. */
-	color: var(--primary-strong);
-	font-size: 0.78rem;
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
+	color: var(--muted);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0;
+	text-transform: none;
 }
 
 .lead {
@@ -529,6 +603,16 @@ section[id] {
 		color var(--motion-theme);
 }
 
+/* Panels never reset paragraph margins, so a one-line panel carried a full
+   default <p> margin top and bottom and measured ~104px tall. */
+.panel > p:first-child {
+	margin-top: 0;
+}
+
+.panel > p:last-child {
+	margin-bottom: 0;
+}
+
 .panel:hover {
 	transform: translateY(-3px);
 	box-shadow:
@@ -544,6 +628,112 @@ section[id] {
 	box-shadow:
 		var(--shadow),
 		0 0 60px -18px var(--glow-primary);
+}
+
+/* The opposite of .strong. Used once, on "Ghi chú tuyển chọn" — the written
+   climax. Everything that competes for attention is removed so the most
+   important block on the page is also the quietest thing on screen. */
+.panel.quiet {
+	border-left: 0;
+	border-radius: 18px;
+	background: none;
+	padding-block: clamp(1.8rem, 5vw, 3rem);
+	box-shadow: none;
+	text-align: center;
+}
+
+.panel.quiet:hover {
+	transform: none;
+	box-shadow: none;
+}
+
+.panel.quiet h3 {
+	color: var(--primary-strong);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1.35;
+	text-transform: uppercase;
+	font-family: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
+	margin-bottom: 1.1rem;
+}
+
+.panel.quiet p {
+	max-width: 46ch;
+	margin-inline: auto;
+	font-family: 'Fraunces', Georgia, serif;
+	font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+	font-optical-sizing: auto;
+	font-weight: 400;
+	line-height: 1.6;
+}
+
+/* ---------- Cảnh 4 · "Gói đãi ngộ" benefit list ----------
+   A numbered package rather than four title-less floating boxes, so scene 4 has
+   a shape of its own and the JD conceit reads as structure instead of filler. */
+.benefit-list {
+	display: grid;
+	margin: 2rem 0 0;
+	padding: 0;
+	gap: 1px;
+	overflow: hidden;
+	border-radius: 14px;
+	list-style: none;
+	background: var(--line);
+	box-shadow: 0 18px 40px -30px var(--glow-primary);
+	counter-reset: benefit;
+	transition: background-color var(--motion-theme);
+}
+
+.benefit-list li {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1rem;
+	margin: 0;
+	background: var(--panel-bg);
+	padding: 1.15rem 1.25rem;
+	line-height: 1.72;
+	transition: background-color var(--motion-theme);
+}
+
+.benefit-list li::before {
+	counter-increment: benefit;
+	content: counter(benefit, decimal-leading-zero);
+	color: var(--primary-strong);
+	font-family: 'Fraunces', Georgia, serif;
+	font-size: 0.9rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	/* Align the numeral with the first line of body text beside it. */
+	line-height: 1.9;
+}
+
+/* ---------- Cảnh 5 · The vow ----------
+   Unboxed large serif lines. Inside the standard panel these four pledges read
+   as an HR policy; set as display type with room around them they read as a vow. */
+.vow-list {
+	display: grid;
+	margin: 0;
+	padding: 0;
+	gap: clamp(1.5rem, 3.5vw, 2.4rem);
+	list-style: none;
+}
+
+.vow-list li {
+	margin: 0;
+	max-width: 30ch;
+	border-left: 2px solid var(--line);
+	padding-left: clamp(1rem, 2.5vw, 1.6rem);
+	color: var(--ink);
+	font-family: 'Fraunces', Georgia, serif;
+	font-optical-sizing: auto;
+	font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+	font-weight: 400;
+	/* >= 1.3 keeps stacked Vietnamese diacritics clear of the line above. */
+	line-height: 1.45;
+	letter-spacing: -0.005em;
+	text-wrap: pretty;
+	transition: border-color var(--motion-theme);
 }
 
 .meta-grid {
@@ -588,6 +778,24 @@ section[id] {
 	align-items: center;
 	margin-top: -5rem;
 	padding-top: 6rem;
+	/* Contains the scaled ::before frame during the film's push-in. */
+	overflow: hidden;
+	color: var(--hero-ink);
+}
+
+/* The opening frame lives on its own layer so the film can scale it.
+   --hero-scale defaults to 1 and is animated to ~1.07 by story-film.js across
+   the #home pin, turning what used to be 540px of frozen scroll into a slow
+   camera push-in. Only `transform` animates, so this stays on the compositor —
+   animating background-size instead would repaint a full-viewport layer every
+   frame. Mobile, reduced-motion and no-JS never set the variable and simply get
+   the still frame. */
+.home-hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
 	background-position: center;
 	background-size: cover;
 	/* The image URL resolves relative to this stylesheet inside assets/. */
@@ -599,7 +807,8 @@ section[id] {
 			var(--hero-overlay-end)
 		),
 		url('dating-application-hero-background.webp');
-	color: var(--hero-ink);
+	transform: scale(var(--hero-scale, 1));
+	transform-origin: 50% 55%;
 }
 
 /* Cinematic hold on the opening frame: a soft edge vignette plus a warm candle
@@ -612,6 +821,13 @@ section[id] {
 	z-index: 0;
 	pointer-events: none;
 	background:
+		/* Dusk carry-over (first layer = painted on top). Scene 1 is a dark
+		   cinematic frame and scene 2 is bright ivory, so the film used to cut hard
+		   at the boundary — most jarring in the light theme. Dissolving the bottom
+		   of the hero into the page colour resolves it. Done here rather than on
+		   #applicant because that section is width-constrained by .site-shell, so an
+		   overlay there shows vertical seams at the 1120px edges. */
+		linear-gradient(to bottom, transparent 68%, var(--background) 100%),
 		radial-gradient(120% 90% at 20% 100%, var(--hero-overlay-end), transparent 60%),
 		radial-gradient(130% 120% at 50% 40%, transparent 52%, rgba(20, 8, 10, 0.55) 100%);
 }
@@ -636,16 +852,66 @@ section[id] {
 	color: var(--hero-ink);
 }
 
-/* ---------- JD page ---------- */
-
-.jd-hero {
-	padding-top: clamp(4rem, 10vw, 8rem);
+/* ---------- Cảnh 7 · The hold ----------
+   During the closing pin the film scrubs --closing-settle 0 → 1, deepening a warm
+   vignette so the camera reads as settling on the last spoken beat. Purely
+   decorative: it never touches content opacity, so nothing here can become
+   invisible while still focusable. Absolutely positioned so it does not become a
+   grid item on this .section-grid section; defaults to 0 in the other tiers. */
+#closing {
+	position: relative;
+	isolation: isolate;
 }
 
-/* ---------- CV page ---------- */
+#closing::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	/* Bleeds vertically only. A horizontal bleed widens the scrollable area — and
+	   because it is a pseudo-element it does so invisibly to any DOM inspection,
+	   which cost 42px of horizontal overflow at 320px. */
+	inset: -10% 0;
+	pointer-events: none;
+	opacity: var(--closing-settle, 0);
+	background: radial-gradient(70% 50% at 50% 50%, var(--glow-primary), transparent 72%);
+}
 
-.cv-hero {
-	padding-top: clamp(4rem, 10vw, 8rem);
+/* ---------- Khung cuối · End card ----------
+   The last frame. Short, centred and quiet: it turns the dossier above it into a
+   credits roll and puts the apply door where the reader actually stops. */
+/* Centres correctly whether this is a grid (static/reduced-motion tiers) or a
+   flex column — in film mode the .film-scene centring rule outranks `display`
+   here, so `align-items` is set for the flex case and `justify-items` for grid. */
+.end-card {
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	gap: 1.1rem;
+	padding-block: clamp(4rem, 12vw, 8rem);
+	text-align: center;
+}
+
+.end-card__seal {
+	width: 3rem;
+	height: 3rem;
+	font-size: 1.05rem;
+	font-weight: 700;
+	opacity: 0.9;
+}
+
+.end-card__mark {
+	margin: 0;
+	color: var(--muted);
+	font-family: 'Fraunces', Georgia, serif;
+	font-optical-sizing: auto;
+	font-size: clamp(1.3rem, 3vw, 1.9rem);
+	font-weight: 400;
+	letter-spacing: 0.02em;
+}
+
+.end-card .button-row {
+	margin-top: 0.5rem;
+	justify-content: center;
 }
 
 .facts-list {
@@ -761,9 +1027,14 @@ section[id] {
 	color: var(--primary);
 }
 
-/* ---------- Freshness stamp (closing) ----------
-   Filled + un-hidden by assets/freshness-stamp.js only on success; the [hidden]
-   attribute keeps it out of layout until then, so a failed fetch shows nothing. */
+/* ---------- Freshness stamp (end card) ----------
+   Filled + un-hidden by assets/freshness-stamp.js only on success, so a failed
+   fetch shows nothing at all — that silence is the honesty guarantee and is worth
+   keeping. It does mean the element is display:none until the fetch resolves, so
+   revealing it still costs one line of shift; two things keep that harmless:
+   it now lives in the end card instead of inside the pinned #closing, and
+   freshness-stamp.js calls ScrollTrigger.refresh() afterwards so no trigger below
+   it is left mis-measured. */
 .freshness-stamp {
 	margin: 1.25rem 0 0;
 	color: var(--muted);
@@ -771,4 +1042,9 @@ section[id] {
 	font-weight: 600;
 	letter-spacing: 0.04em;
 	transition: color var(--motion-theme);
+}
+
+/* [hidden] must still win over the grid display .end-card gives its children. */
+.freshness-stamp[hidden] {
+	display: none;
 }

@@ -39,9 +39,19 @@
 		return;
 	}
 
+	// The head watchdog gave up waiting for an engine (slow or stalled CDN) and
+	// already un-hid the page. Re-adding `js-ready` here would hide every beat a
+	// second time and reveal it again — a visible flash on exactly the slow
+	// connections the watchdog exists to protect. Leave the page as it is.
+	if (root.dataset.storyWatchdog === 'fired') {
+		return;
+	}
+
 	// Defensive: the controller sets html.js-ready pre-paint, but re-add it here
 	// so the hidden state is guaranteed even if that inline setter was skipped.
 	root.classList.add('js-ready');
+	// Tells the head watchdog an engine claimed the page, so it stops waiting.
+	root.dataset.storyEngine = 'reveal';
 
 	const revealAll = () => {
 		document

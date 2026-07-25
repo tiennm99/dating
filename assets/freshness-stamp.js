@@ -37,6 +37,13 @@
 
 			el.textContent = 'Vị trí vẫn đang mở · cập nhật ' + formatted + '.';
 			el.hidden = false;
+
+			// The stamp lands after ScrollTrigger has already measured, so every
+			// trigger below it would otherwise sit one stamp-height out of place.
+			// (.freshness-stamp also reserves its own height in styles.css, so the
+			// visible layout shift is zero; this keeps the film's maths honest for
+			// the cases where the text wraps to a second line.)
+			window.ScrollTrigger?.refresh();
 		})
 		.catch(() => {
 			// Silent by design: keep the stamp hidden rather than show a broken date.
